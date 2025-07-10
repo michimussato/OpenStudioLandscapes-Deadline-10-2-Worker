@@ -431,8 +431,6 @@ def compose_pulse_runner(
         "volumes": [
             f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
             f"{env.get('REPOSITORY_INSTALL_DESTINATION_%s' % '__'.join(ASSET_HEADER_PARENT['key_prefix']))}:/opt/Thinkbox/DeadlineRepository10",
-            f"{env.get('NFS_ENTRY_POINT')}:{env.get('NFS_ENTRY_POINT')}",
-            f"{env.get('NFS_ENTRY_POINT')}:{env.get('NFS_ENTRY_POINT_LNS')}",
         ]
     }
 
@@ -540,8 +538,6 @@ def compose_worker_runner(
         "volumes": [
             f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
             f"{env.get('REPOSITORY_INSTALL_DESTINATION_%s' % '__'.join(ASSET_HEADER_PARENT['key_prefix']))}:/opt/Thinkbox/DeadlineRepository10",
-            f"{env.get('NFS_ENTRY_POINT')}:{env.get('NFS_ENTRY_POINT')}",
-            f"{env.get('NFS_ENTRY_POINT')}:{env.get('NFS_ENTRY_POINT_LNS')}",
         ]
     }
 
