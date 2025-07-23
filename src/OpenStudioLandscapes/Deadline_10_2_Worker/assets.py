@@ -6,7 +6,7 @@ import shutil
 import textwrap
 import time
 import urllib.parse
-from typing import Generator
+from typing import Generator, Any
 
 import yaml
 from dagster import (
@@ -908,7 +908,7 @@ def deadline_command_compose_pulse_runner(
 )
 def cmd_extend(
         context: AssetExecutionContext,
-):
+) -> Generator[Output[list[Any]] | AssetMaterialization | Any, Any, None]:
 
     ret = [
         "--detach"
@@ -939,7 +939,7 @@ def cmd_append(
         context: AssetExecutionContext,
         env: dict,  # pylint: disable=redefined-outer-name
         compose: dict,  # pylint: disable=redefined-outer-name,
-):
+) -> Generator[Output[dict[str, list[Any]]] | AssetMaterialization | Any, Any, None]:
 
     ret = {
         "cmd": [],
@@ -1019,11 +1019,6 @@ def cmd_append(
     yield AssetMaterialization(
         asset_key=context.asset_key,
         metadata={
-            "__".join(context.asset_key.path): MetadataValue.path(
-                " ".join(
-                    shlex.quote(s) if not s in ret["exclude_from_quote"] else s
-                    for s in ret["cmd"]
-                )
-            ),
+            "__".join(context.asset_key.path): MetadataValue.json(ret),
         },
     )
