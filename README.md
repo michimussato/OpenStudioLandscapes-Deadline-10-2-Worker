@@ -15,6 +15,8 @@
       1. [Feature Configs](#feature-configs)
 2. [Community](#community)
 3. [Instructions](#instructions)
+   1. [Known Issues](#known-issues)
+      1. [Failed to establish connection to due to a communication error.](#failed-to-establish-connection-to-due-to-a-communication-error)
 
 ***
 
@@ -213,3 +215,46 @@ To follow up on the previous LinkedIn publications, visit:
 This is an extension Feature for `OpenStudioLandscapes-Deadline-10-2`. For more information see the `README.md` there:
 
 - [OpenStudioLandscapes-Deadline-10-2](https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2)
+
+## Known Issues
+
+### Failed to establish connection to  due to a communication error.
+
+```generic
+
+deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: UpdateClient.MaybeSendRequestNow caught an exception: POST http://deadline-rcs-runner-10-2.farm.evil:8888/rcs/v1/update returned "One or more errors occurred. (Name or service not known (deadline-rcs-runner-10-2.farm.evil:8888))" (Deadline.Net.Clients.Http.DeadlineHttpRequestException)
+deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: DataController threw a configuration exception during initialization: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error. (Deadline.Configuration.DeadlineConfigException)
+deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Could not connect to Deadline Repository: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error.
+deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Deadline Pulse will try to connect again in 10 seconds...
+deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: UpdateClient.MaybeSendRequestNow caught an exception: POST http://deadline-rcs-runner-10-2.farm.evil:8888/rcs/v1/update returned "One or more errors occurred. (Name or service not known (deadline-rcs-runner-10-2.farm.evil:8888))" (Deadline.Net.Clients.Http.DeadlineHttpRequestException)
+deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: DataController threw a configuration exception during initialization: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error. (Deadline.Configuration.DeadlineConfigException)
+deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Could not connect to Deadline Repository: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error.
+deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Deadline Worker will try to connect again in 10 seconds...
+
+```
+
+Make sure that the name get resolved correctly.
+
+```generic
+
+$ nslookup deadline-rcs-runner-10-2.farm.evil
+Server:         192.168.1.10
+Address:        192.168.1.10#53
+
+** server can't find deadline-rcs-runner-10-2.farm.evil: NXDOMAIN
+
+```
+
+And add a DNS record or edit your `hosts` file so that `deadline-rcs-runner-10-2.farm.evil` gets resolved correctly, as in this example:
+
+```generic
+
+$ nslookup deadline-rcs-runner-10-2.farm.evil
+Server:         192.168.1.10
+Address:        192.168.1.10#53
+
+deadline-rcs-runner-10-2.farm.evil      canonical name = lenovo.farm.evil.
+Name:   lenovo.farm.evil
+Address: 192.168.1.50
+
+```
