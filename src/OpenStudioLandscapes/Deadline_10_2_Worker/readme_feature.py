@@ -60,7 +60,7 @@ def readme_feature(
     doc.add_paragraph(
         text=textwrap.dedent(
             """
-            Make sure that the name get resolved correctly.
+            Make sure that the name gets resolved correctly.
             """
         )
     )
