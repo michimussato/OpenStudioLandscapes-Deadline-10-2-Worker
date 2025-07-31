@@ -233,7 +233,7 @@ deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: 
 
 ```
 
-Make sure that the name get resolved correctly.
+Make sure that the name gets resolved correctly.
 
 ```generic
 
