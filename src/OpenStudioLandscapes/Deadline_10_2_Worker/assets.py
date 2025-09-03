@@ -6,7 +6,7 @@ import shutil
 import textwrap
 import time
 import urllib.parse
-from typing import Generator, Any
+from typing import Any, Generator
 
 import yaml
 from dagster import (
@@ -18,24 +18,25 @@ from dagster import (
     Output,
     asset,
 )
-
+from OpenStudioLandscapes.engine.common_assets.compose import get_compose
+from OpenStudioLandscapes.engine.common_assets.constants import get_constants
+from OpenStudioLandscapes.engine.common_assets.docker_compose_graph import (
+    get_docker_compose_graph,
+)
+from OpenStudioLandscapes.engine.common_assets.docker_config import get_docker_config
+from OpenStudioLandscapes.engine.common_assets.docker_config_json import (
+    get_docker_config_json,
+)
+from OpenStudioLandscapes.engine.common_assets.env import get_env
+from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out
+from OpenStudioLandscapes.engine.common_assets.group_in import get_group_in
+from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
 from OpenStudioLandscapes.engine.constants import *
 from OpenStudioLandscapes.engine.enums import *
 from OpenStudioLandscapes.engine.utils import *
 from OpenStudioLandscapes.engine.utils.docker import *
 
 from OpenStudioLandscapes.Deadline_10_2_Worker.constants import *
-
-from OpenStudioLandscapes.engine.common_assets.constants import get_constants
-from OpenStudioLandscapes.engine.common_assets.docker_config import get_docker_config
-from OpenStudioLandscapes.engine.common_assets.env import get_env
-from OpenStudioLandscapes.engine.common_assets.group_in import get_group_in
-from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
-from OpenStudioLandscapes.engine.common_assets.docker_compose_graph import get_docker_compose_graph
-from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out
-from OpenStudioLandscapes.engine.common_assets.compose import get_compose
-from OpenStudioLandscapes.engine.common_assets.docker_config_json import get_docker_config_json
-
 
 constants = get_constants(
     ASSET_HEADER=ASSET_HEADER,
@@ -100,7 +101,9 @@ docker_config_json = get_docker_config_json(
         "docker_config_json": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "docker_config_json"]),
         ),
-        "group_in": AssetIn(AssetKey([*ASSET_HEADER_BASE["key_prefix"], str(GroupIn.BASE_IN)])),
+        "group_in": AssetIn(
+            AssetKey([*ASSET_HEADER_BASE["key_prefix"], str(GroupIn.BASE_IN)])
+        ),
         # Todo:
         #  - [ ] this dependency should be coming from AssetKey([*ASSET_HEADER["key_prefix"], "group_in"])
         "build_base_image_data": AssetIn(
@@ -109,7 +112,12 @@ docker_config_json = get_docker_config_json(
         # Todo:
         #  - [ ] this dependency should be coming from AssetKey([*ASSET_HEADER["key_prefix"], "group_in"])
         "deadline_command_build_client_image_10_2": AssetIn(
-            AssetKey([*ASSET_HEADER_PARENT["key_prefix"], "deadline_command_build_docker_image_client"]),
+            AssetKey(
+                [
+                    *ASSET_HEADER_PARENT["key_prefix"],
+                    "deadline_command_build_docker_image_client",
+                ]
+            ),
         ),
     },
 )
@@ -395,7 +403,9 @@ def deadline_ini(
             AssetKey([*ASSET_HEADER["key_prefix"], "deadline_ini"]),
         ),
         "deadline_command_compose_pulse_runner_10_2": AssetIn(
-            AssetKey([*ASSET_HEADER["key_prefix"], "deadline_command_compose_pulse_runner"]),
+            AssetKey(
+                [*ASSET_HEADER["key_prefix"], "deadline_command_compose_pulse_runner"]
+            ),
         ),
         "compose_networks_10_2": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "compose_networks"]),
@@ -488,7 +498,8 @@ def compose_pulse_runner(
             "domainname": env.get("ROOT_DOMAIN"),
             # https://docs.docker.com/reference/compose-file/services/#restart
             "restart": "on-failure:3",
-            "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s" % (build['image_name'], build['image_tags'][0]),
+            "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
+            % (build["image_name"], build["image_tags"][0]),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
             **copy.deepcopy(ports_dict),
@@ -527,7 +538,9 @@ def compose_pulse_runner(
             AssetKey([*ASSET_HEADER["key_prefix"], "deadline_ini"]),
         ),
         "deadline_command_compose_worker_runner_10_2": AssetIn(
-            AssetKey([*ASSET_HEADER["key_prefix"], "deadline_command_compose_worker_runner"]),
+            AssetKey(
+                [*ASSET_HEADER["key_prefix"], "deadline_command_compose_worker_runner"]
+            ),
         ),
         "compose_networks_10_2": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "compose_networks"]),
@@ -603,12 +616,7 @@ def compose_worker_runner(
         container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
         host_name = ".".join([service_name, env["ROOT_DOMAIN"]])
 
-        deadline_command_compose_worker_runner_10_2.extend(
-            [
-                "-name",
-                str(service_name)
-            ]
-        )
+        deadline_command_compose_worker_runner_10_2.extend(["-name", str(service_name)])
 
         service = {
             "container_name": container_name,
@@ -619,7 +627,8 @@ def compose_worker_runner(
             # "hostname": host_name,
             "domainname": env.get("ROOT_DOMAIN"),
             "restart": "always",
-            "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s" % (build['image_name'], build['image_tags'][0]),
+            "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
+            % (build["image_name"], build["image_tags"][0]),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
             **copy.deepcopy(volumes_dict),
@@ -903,16 +912,13 @@ def deadline_command_compose_pulse_runner(
 
 @asset(
     **ASSET_HEADER,
-    ins={
-    },
+    ins={},
 )
 def cmd_extend(
-        context: AssetExecutionContext,
+    context: AssetExecutionContext,
 ) -> Generator[Output[list[Any]] | AssetMaterialization | Any, Any, None]:
 
-    ret = [
-        "--detach"
-    ]
+    ret = ["--detach"]
 
     yield Output(ret)
 
@@ -936,15 +942,12 @@ def cmd_extend(
     },
 )
 def cmd_append(
-        context: AssetExecutionContext,
-        env: dict,  # pylint: disable=redefined-outer-name
-        compose: dict,  # pylint: disable=redefined-outer-name,
+    context: AssetExecutionContext,
+    env: dict,  # pylint: disable=redefined-outer-name
+    compose: dict,  # pylint: disable=redefined-outer-name,
 ) -> Generator[Output[dict[str, list[Any]]] | AssetMaterialization | Any, Any, None]:
 
-    ret = {
-        "cmd": [],
-        "exclude_from_quote": []
-    }
+    ret = {"cmd": [], "exclude_from_quote": []}
 
     compose_services = list(compose["services"].keys())
 
@@ -970,7 +973,9 @@ def cmd_append(
     # - $(hostname)-deadline-10-2-pulse-worker-001...nnn
     for service_name in compose_services:
 
-        target_worker = "$(docker inspect -f '{{ .State.Pid }}' %s)" % "--".join([service_name, env.get("LANDSCAPE", "default")])
+        target_worker = "$(docker inspect -f '{{ .State.Pid }}' %s)" % "--".join(
+            [service_name, env.get("LANDSCAPE", "default")]
+        )
         hostname_worker = f"$(hostname)-{service_name}"
 
         exclude_from_quote.extend(
@@ -983,7 +988,8 @@ def cmd_append(
         cmd_docker_compose_set_dynamic_hostname_worker = [
             shutil.which("sudo"),
             shutil.which("nsenter"),
-            "--target", target_worker,
+            "--target",
+            target_worker,
             "--uts",
             "hostname",
             hostname_worker,

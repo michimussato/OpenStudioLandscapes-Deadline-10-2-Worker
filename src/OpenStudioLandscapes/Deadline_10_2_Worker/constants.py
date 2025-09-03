@@ -7,23 +7,25 @@ __all__ = [
 ]
 
 import pathlib
-from typing import Generator, Any
+from typing import Any, Generator
 
 from dagster import (
-    multi_asset,
-    AssetOut,
-    AssetMaterialization,
     AssetExecutionContext,
-    Output,
+    AssetMaterialization,
+    AssetOut,
     MetadataValue,
+    Output,
     get_dagster_logger,
+    multi_asset,
 )
 
 LOGGER = get_dagster_logger(__name__)
 
+from OpenStudioLandscapes.Deadline_10_2.constants import (
+    ASSET_HEADER as ASSET_HEADER_PARENT,
+)
 from OpenStudioLandscapes.engine.constants import DOCKER_USE_CACHE_GLOBAL
 from OpenStudioLandscapes.engine.enums import OpenStudioLandscapesConfig
-from OpenStudioLandscapes.Deadline_10_2.constants import ASSET_HEADER as ASSET_HEADER_PARENT
 
 DOCKER_USE_CACHE = DOCKER_USE_CACHE_GLOBAL or False
 
@@ -75,8 +77,15 @@ FEATURE_CONFIGS = {
 )
 def constants_multi_asset(
     context: AssetExecutionContext,
-) -> Generator[Output[dict[OpenStudioLandscapesConfig, dict[str, bool]]] | AssetMaterialization | Output[Any] | Output[
-    pathlib.Path] | Any, None, None]:
+) -> Generator[
+    Output[dict[OpenStudioLandscapesConfig, dict[str, bool]]]
+    | AssetMaterialization
+    | Output[Any]
+    | Output[pathlib.Path]
+    | Any,
+    None,
+    None,
+]:
     """ """
 
     yield Output(
@@ -101,9 +110,9 @@ def constants_multi_asset(
     yield AssetMaterialization(
         asset_key=context.asset_key_for_output("NAME"),
         metadata={
-            "__".join(
-                context.asset_key_for_output("NAME").path
-            ): MetadataValue.path(__name__),
+            "__".join(context.asset_key_for_output("NAME").path): MetadataValue.path(
+                __name__
+            ),
         },
     )
 

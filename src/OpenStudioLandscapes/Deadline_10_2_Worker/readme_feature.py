@@ -1,10 +1,9 @@
 import textwrap
+
 import snakemd
 
 
-def readme_feature(
-        doc: snakemd.Document
-) -> snakemd.Document:
+def readme_feature(doc: snakemd.Document) -> snakemd.Document:
 
     ## Some Specific information
 
@@ -72,7 +71,7 @@ def readme_feature(
                 $ nslookup deadline-rcs-runner-10-2.farm.evil
                 Server:         192.168.1.10
                 Address:        192.168.1.10#53
-                
+
                 ** server can't find deadline-rcs-runner-10-2.farm.evil: NXDOMAIN
                 """
             )
@@ -96,7 +95,7 @@ def readme_feature(
                 $ nslookup deadline-rcs-runner-10-2.farm.evil
                 Server:         192.168.1.10
                 Address:        192.168.1.10#53
-                
+
                 deadline-rcs-runner-10-2.farm.evil      canonical name = lenovo.farm.evil.
                 Name:   lenovo.farm.evil
                 Address: 192.168.1.50
@@ -108,5 +107,5 @@ def readme_feature(
     return doc
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass
