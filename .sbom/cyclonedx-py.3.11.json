@@ -202,7 +202,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes#2b766eb81ab1c953c595df0fd0d4a26529d883e0"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes#029cb025a2180875743779f7b275700525295730"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -214,14 +214,14 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "2b766eb81ab1c953c595df0fd0d4a26529d883e0"
+          "value": "029cb025a2180875743779f7b275700525295730"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "v1.2.0-rc1"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes%402b766eb81ab1c953c595df0fd0d4a26529d883e0",
+      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes%40029cb025a2180875743779f7b275700525295730",
       "type": "library",
       "version": "0.0.0"
     },
@@ -232,7 +232,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2#90cb965ca853cedb1afaa8a6f000c0674ef8b692"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2#15d353ff74c87419efe87f3a850a9d662d14ba30"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -244,14 +244,14 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "90cb965ca853cedb1afaa8a6f000c0674ef8b692"
+          "value": "15d353ff74c87419efe87f3a850a9d662d14ba30"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "v1.2.0-rc1"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2%4090cb965ca853cedb1afaa8a6f000c0674ef8b692",
+      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2%4015d353ff74c87419efe87f3a850a9d662d14ba30",
       "type": "library",
       "version": "0.0.0"
     },
@@ -4129,7 +4129,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2025-09-03T08:54:58.784127+00:00",
+    "timestamp": "2025-09-03T10:10:39.553325+00:00",
     "tools": {
       "components": [
         {
@@ -4233,7 +4233,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:93535434-d472-4c13-ad35-cf2537dc42ae",
+  "serialNumber": "urn:uuid:58643aa8-626e-4133-b629-9ed1580db5a8",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
