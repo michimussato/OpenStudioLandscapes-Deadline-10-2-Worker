@@ -359,7 +359,7 @@ def deadline_ini(
             f"http://localhost:3000/asset-groups/{'%2F'.join(context.asset_key.path)}",
             safe=":/%",
         ),
-        rcs_runner_hostname=".".join(["deadline-rcs-runner-10-2", env["ROOT_DOMAIN"]]),
+        rcs_runner_hostname=".".join(["deadline-rcs-runner-10-2", env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]]),
         **env,
     )
     # @formatter:on
@@ -471,15 +471,13 @@ def compose_pulse_runner(
 
     service_name_base = "deadline-10-2-pulse-worker"
     padding = 3
-    # container_name = service_name
-    # host_name = ".".join([service_name, env["ROOT_DOMAIN"]])
 
     docker_dict = {"services": {}}
 
     for i in range(NUM_SERVICES):
         service_name = f"{service_name_base}-{str(i+1).zfill(padding)}"
         container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
-        host_name = ".".join([service_name, env["ROOT_DOMAIN"]])
+        # host_name = ".".join([env["HOSTNAME_PULSE_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
 
         # # deadlinepulse does not have a -name flag
         # deadline_command_compose_pulse_runner_10_2.extend(
@@ -495,7 +493,7 @@ def compose_pulse_runner(
             # specify it.
             # https://forums.docker.com/t/docker-compose-set-container-name-and-hostname-dynamicaly/138259/2
             # "hostname": host_name,
-            "domainname": env.get("ROOT_DOMAIN"),
+            "domainname": env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
             # https://docs.docker.com/reference/compose-file/services/#restart
             "restart": "on-failure:3",
             "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
@@ -606,15 +604,13 @@ def compose_worker_runner(
 
     service_name_base = "deadline-10-2-worker"
     padding = 3
-    # container_name = service_name
-    # host_name = ".".join([service_name, env["ROOT_DOMAIN"]])
 
     docker_dict = {"services": {}}
 
     for i in range(NUM_SERVICES):
         service_name = f"{service_name_base}-{str(i+1).zfill(padding)}"
         container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
-        host_name = ".".join([service_name, env["ROOT_DOMAIN"]])
+        # host_name = ".".join([env["HOSTNAME_WORKER_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
 
         deadline_command_compose_worker_runner_10_2.extend(["-name", str(service_name)])
 
@@ -625,7 +621,7 @@ def compose_worker_runner(
             # https://forums.docker.com/t/docker-compose-set-container-name-and-hostname-dynamicaly/138259/2
             # https://shantanoo-desai.github.io/posts/technology/hostname-docker-container/
             # "hostname": host_name,
-            "domainname": env.get("ROOT_DOMAIN"),
+            "domainname": env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
             "restart": "always",
             "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             % (build["image_name"], build["image_tags"][0]),
