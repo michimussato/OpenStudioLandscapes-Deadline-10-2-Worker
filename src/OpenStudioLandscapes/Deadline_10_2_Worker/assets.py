@@ -359,7 +359,9 @@ def deadline_ini(
             f"http://localhost:3000/asset-groups/{'%2F'.join(context.asset_key.path)}",
             safe=":/%",
         ),
-        rcs_runner_hostname=".".join(["deadline-rcs-runner-10-2", env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]]),
+        rcs_runner_hostname=".".join(
+            ["deadline-rcs-runner-10-2", env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]]
+        ),
         **env,
     )
     # @formatter:on
