@@ -1,3 +1,4 @@
+import os
 import textwrap
 
 import snakemd
@@ -32,7 +33,7 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
         level=2,
     )
 
-    "deadline-rcs-runner-10-2.farm.evil"
+    f"deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}"
 
     doc.add_heading(
         text="Failed to establish connection to  due to a communication error.",
@@ -67,12 +68,12 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
     doc.add_block(
         block=snakemd.Code(
             textwrap.dedent(
-                """
-                $ nslookup deadline-rcs-runner-10-2.farm.evil
+                f"""
+                $ nslookup deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}
                 Server:         192.168.1.10
                 Address:        192.168.1.10#53
 
-                ** server can't find deadline-rcs-runner-10-2.farm.evil: NXDOMAIN
+                ** server can't find deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}: NXDOMAIN
                 """
             )
         )
@@ -80,9 +81,9 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
 
     doc.add_paragraph(
         text=textwrap.dedent(
-            """
+            f"""
             And add a DNS record or edit your `hosts` file so that
-            `deadline-rcs-runner-10-2.farm.evil` gets resolved correctly,
+            `deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}` gets resolved correctly,
             as in this example:
             """
         )
@@ -91,13 +92,13 @@ def readme_feature(doc: snakemd.Document) -> snakemd.Document:
     doc.add_block(
         block=snakemd.Code(
             textwrap.dedent(
-                """
-                $ nslookup deadline-rcs-runner-10-2.farm.evil
+                f"""
+                $ nslookup deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}
                 Server:         192.168.1.10
                 Address:        192.168.1.10#53
 
-                deadline-rcs-runner-10-2.farm.evil      canonical name = lenovo.farm.evil.
-                Name:   lenovo.farm.evil
+                deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}      canonical name = lenovo.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}.
+                Name:   lenovo.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}
                 Address: 192.168.1.50
                 """
             )

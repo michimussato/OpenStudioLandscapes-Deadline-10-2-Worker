@@ -433,16 +433,16 @@ def compose_pulse_runner(
         }
         ports_dict = {
             "ports": [
-                f"{env.get('DAGSTER_DEV_PORT_HOST')}:{env.get('DAGSTER_DEV_PORT_CONTAINER')}",
+                f"{env['DAGSTER_DEV_PORT_HOST']}:{env['DAGSTER_DEV_PORT_CONTAINER']}",
             ]
         }
     elif "network_mode" in compose_networks_10_2:
-        network_dict = {"network_mode": compose_networks_10_2.get("network_mode")}
+        network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
 
     volumes_dict = {
         "volumes": [
             f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
-            f"{env.get('REPOSITORY_INSTALL_DESTINATION_%s' % '__'.join(ASSET_HEADER_PARENT['key_prefix']))}:/opt/Thinkbox/DeadlineRepository10",
+            f"{env['REPOSITORY_INSTALL_DESTINATION_%s' % '__'.join(ASSET_HEADER_PARENT['key_prefix'])]}:/opt/Thinkbox/DeadlineRepository10",
         ]
     }
 
@@ -495,7 +495,7 @@ def compose_pulse_runner(
             # specify it.
             # https://forums.docker.com/t/docker-compose-set-container-name-and-hostname-dynamicaly/138259/2
             # "hostname": host_name,
-            "domainname": env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+            "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
             # https://docs.docker.com/reference/compose-file/services/#restart
             "restart": "on-failure:3",
             "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
@@ -566,16 +566,16 @@ def compose_worker_runner(
         }
         ports_dict = {
             "ports": [
-                f"{env.get('DAGSTER_DEV_PORT_HOST')}:{env.get('DAGSTER_DEV_PORT_CONTAINER')}",
+                f"{env['DAGSTER_DEV_PORT_HOST']}:{env['DAGSTER_DEV_PORT_CONTAINER']}",
             ]
         }
     elif "network_mode" in compose_networks_10_2:
-        network_dict = {"network_mode": compose_networks_10_2.get("network_mode")}
+        network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
 
     volumes_dict = {
         "volumes": [
             f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
-            f"{env.get('REPOSITORY_INSTALL_DESTINATION_%s' % '__'.join(ASSET_HEADER_PARENT['key_prefix']))}:/opt/Thinkbox/DeadlineRepository10",
+            f"{env['REPOSITORY_INSTALL_DESTINATION_%s' % '__'.join(ASSET_HEADER_PARENT['key_prefix'])]}:/opt/Thinkbox/DeadlineRepository10",
         ]
     }
 
@@ -623,7 +623,7 @@ def compose_worker_runner(
             # https://forums.docker.com/t/docker-compose-set-container-name-and-hostname-dynamicaly/138259/2
             # https://shantanoo-desai.github.io/posts/technology/hostname-docker-container/
             # "hostname": host_name,
-            "domainname": env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+            "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
             "restart": "always",
             "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             % (build["image_name"], build["image_tags"][0]),

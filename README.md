@@ -223,24 +223,23 @@ Make sure that the name gets resolved correctly.
 
 ```generic
 
-$ nslookup deadline-rcs-runner-10-2.farm.evil
+$ nslookup deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}
 Server:         192.168.1.10
 Address:        192.168.1.10#53
 
-** server can't find deadline-rcs-runner-10-2.farm.evil: NXDOMAIN
+** server can't find deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}: NXDOMAIN
 
 ```
 
-And add a DNS record or edit your `hosts` file so that `deadline-rcs-runner-10-2.farm.evil` gets resolved correctly, as in this example:
+And add a DNS record or edit your `hosts` file so that `deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}` gets resolved correctly, as in this example:
 
 ```generic
-
-$ nslookup deadline-rcs-runner-10-2.farm.evil
+$ nslookup deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}
 Server:         192.168.1.10
 Address:        192.168.1.10#53
 
-deadline-rcs-runner-10-2.farm.evil      canonical name = lenovo.farm.evil.
-Name:   lenovo.farm.evil
+deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}      canonical name = lenovo.farm.evil.
+Name:   lenovo.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}
 Address: 192.168.1.50
 
 ```
