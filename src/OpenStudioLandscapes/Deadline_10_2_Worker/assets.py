@@ -38,7 +38,6 @@ from OpenStudioLandscapes.engine.utils.docker import *
 
 from OpenStudioLandscapes.Deadline_10_2_Worker.constants import *
 
-
 constants = get_constants(
     ASSET_HEADER=ASSET_HEADER,
 )
