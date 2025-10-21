@@ -207,7 +207,6 @@ This is an extension Feature for `OpenStudioLandscapes-Deadline-10-2`. For more 
 ### Failed to establish connection to  due to a communication error.
 
 ```generic
-
 deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: UpdateClient.MaybeSendRequestNow caught an exception: POST http://deadline-rcs-runner-10-2.farm.evil:8888/rcs/v1/update returned "One or more errors occurred. (Name or service not known (deadline-rcs-runner-10-2.farm.evil:8888))" (Deadline.Net.Clients.Http.DeadlineHttpRequestException)
 deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: DataController threw a configuration exception during initialization: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error. (Deadline.Configuration.DeadlineConfigException)
 deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Could not connect to Deadline Repository: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error.
@@ -215,31 +214,27 @@ deadline-10-2-pulse-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6
 deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: UpdateClient.MaybeSendRequestNow caught an exception: POST http://deadline-rcs-runner-10-2.farm.evil:8888/rcs/v1/update returned "One or more errors occurred. (Name or service not known (deadline-rcs-runner-10-2.farm.evil:8888))" (Deadline.Net.Clients.Http.DeadlineHttpRequestException)
 deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: ERROR: DataController threw a configuration exception during initialization: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error. (Deadline.Configuration.DeadlineConfigException)
 deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Could not connect to Deadline Repository: Failed to establish connection to deadline-rcs-runner-10-2.farm.evil:8888 due to a communication error.
-deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Deadline Worker will try to connect again in 10 seconds...
-
+deadline-10-2-worker-001--2025-07-24-13-27-17-332a6900a9cf452f9d58fa57d2b6195a: Deadline Worker will try to connect again in 10 seconds...                
 ```
 
 Make sure that the name gets resolved correctly.
 
 ```generic
-
-$ nslookup deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}
+$ nslookup deadline-rcs-runner-10-2.openstudiolandscapes.lan
 Server:         192.168.1.10
 Address:        192.168.1.10#53
 
-** server can't find deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}: NXDOMAIN
-
+** server can't find deadline-rcs-runner-10-2.openstudiolandscapes.lan: NXDOMAIN                
 ```
 
-And add a DNS record or edit your `hosts` file so that `deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}` gets resolved correctly, as in this example:
+And add a DNS record or edit your `hosts` file so that `deadline-rcs-runner-10-2.openstudiolandscapes.lan` gets resolved correctly, as in this example:
 
 ```generic
-$ nslookup deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}
+$ nslookup deadline-rcs-runner-10-2.openstudiolandscapes.lan
 Server:         192.168.1.10
 Address:        192.168.1.10#53
 
-deadline-rcs-runner-10-2.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}      canonical name = lenovo.farm.evil.
-Name:   lenovo.${OPENSTUDIOLANDSCAPES__DOMAIN_LAN}
-Address: 192.168.1.50
-
+deadline-rcs-runner-10-2.openstudiolandscapes.lan      canonical name = lenovo.openstudiolandscapes.lan.
+Name:   lenovo.openstudiolandscapes.lan
+Address: 192.168.1.50                
 ```
