@@ -149,7 +149,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes#ecbb4ea4078b1eec050a21e0336ca03337bd572c"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes#865b78b1decd9373ec3e40f143d7bec00abaace1"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -161,14 +161,14 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "ecbb4ea4078b1eec050a21e0336ca03337bd572c"
+          "value": "865b78b1decd9373ec3e40f143d7bec00abaace1"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "v1.6.0-rc1"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes%40ecbb4ea4078b1eec050a21e0336ca03337bd572c",
+      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes%40865b78b1decd9373ec3e40f143d7bec00abaace1",
       "type": "library",
       "version": "0.0.0"
     },
@@ -179,7 +179,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2#65188f9f05f36638345c7c937cbde76f81edaf19"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2#40ebc315e886f60cdf6df889526cf591bd051692"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -191,14 +191,14 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "65188f9f05f36638345c7c937cbde76f81edaf19"
+          "value": "40ebc315e886f60cdf6df889526cf591bd051692"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "v1.6.0-rc1"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2%4065188f9f05f36638345c7c937cbde76f81edaf19",
+      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2%4040ebc315e886f60cdf6df889526cf591bd051692",
       "type": "library",
       "version": "0.0.0"
     },
@@ -873,7 +873,7 @@
       "version": "7.2.0"
     },
     {
-      "bom-ref": "cyclonedx-python-lib==11.2.0",
+      "bom-ref": "cyclonedx-python-lib==11.3.0",
       "description": "Python library for CycloneDX",
       "externalReferences": [
         {
@@ -928,9 +928,9 @@
           "value": "validation"
         }
       ],
-      "purl": "pkg:pypi/cyclonedx-python-lib@11.2.0",
+      "purl": "pkg:pypi/cyclonedx-python-lib@11.3.0",
       "type": "library",
-      "version": "11.2.0"
+      "version": "11.3.0"
     },
     {
       "bom-ref": "dagster==1.9.11",
@@ -3704,7 +3704,7 @@
     {
       "dependsOn": [
         "chardet==5.2.0",
-        "cyclonedx-python-lib==11.2.0",
+        "cyclonedx-python-lib==11.3.0",
         "packageurl-python==0.17.5",
         "packaging==25.0",
         "pip-requirements-parser==32.0.1",
@@ -3723,7 +3723,7 @@
         "sortedcontainers==2.4.0",
         "typing_extensions==4.15.0"
       ],
-      "ref": "cyclonedx-python-lib==11.2.0"
+      "ref": "cyclonedx-python-lib==11.3.0"
     },
     {
       "ref": "dagster-pipes==1.9.11"
@@ -4162,7 +4162,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2025-10-21T22:10:19.633029+00:00",
+    "timestamp": "2025-10-22T13:07:32.729729+00:00",
     "tools": {
       "components": [
         {
@@ -4261,12 +4261,12 @@
           ],
           "name": "cyclonedx-python-lib",
           "type": "library",
-          "version": "11.2.0"
+          "version": "11.3.0"
         }
       ]
     }
   },
-  "serialNumber": "urn:uuid:9f1d30e6-d84d-4a9a-ace4-50a4e1f43307",
+  "serialNumber": "urn:uuid:11439380-24a1-4cc6-836a-0ac4c08547ee",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
