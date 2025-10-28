@@ -1,0 +1,28 @@
+project:
+  dependencies:
+  - OpenStudioLandscapes-Deadline-10-2 @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2@v1.8.0-rc1
+  description: 'Deadline 10.2 Worker Feature for OpenStudioLandscapes (dep: OpenStudioLandscapes-Deadline-10-2)'
+  name: OpenStudioLandscapes-Deadline-10-2-Worker
+  optional-dependencies:
+    dev:
+    - OpenStudioLandscapes-Deadline-10-2-Worker[testing]
+    - OpenStudioLandscapes-Deadline-10-2-Worker[lint]
+    - OpenStudioLandscapes-Deadline-10-2-Worker[nox]
+    - OpenStudioLandscapes-Deadline-10-2-Worker[sbom]
+    - OpenStudioLandscapes-Deadline-10-2-Worker[coverage]
+    - OpenStudioLandscapes-Deadline-10-2-Worker[readme]
+    nox:
+    - OpenStudioLandscapes-Deadline-10-2-Worker[testing]
+    readme:
+    - OpenStudioLandscapesUtil-ReadmeGenerator @ git+https://github.com/michimussato/OpenStudioLandscapesUtil-ReadmeGenerator.git@v1.8.0-rc1
+    sbom:
+    - OpenStudioLandscapes-Deadline-10-2-Worker[graphviz]
+  urls:
+    Homepage: https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2-Worker
+tool:
+  dagster:
+    code_location_name: OpenStudioLandscapes-Deadline-10-2-Worker
+    module_name: OpenStudioLandscapes.Deadline_10_2_Worker.definitions
+  setuptools:
+    packages:
+    - OpenStudioLandscapes.Deadline_10_2_Worker
