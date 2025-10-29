@@ -149,7 +149,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes#0b37b283f021b001912926d4243a74c09b927e83"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes#4a22fb6db0389189c49cb0caeea47f60646b848a"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -161,14 +161,14 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "0b37b283f021b001912926d4243a74c09b927e83"
+          "value": "4a22fb6db0389189c49cb0caeea47f60646b848a"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "v1.8.0-rc1"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes%400b37b283f021b001912926d4243a74c09b927e83",
+      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes%404a22fb6db0389189c49cb0caeea47f60646b848a",
       "type": "library",
       "version": "0.0.0"
     },
@@ -179,7 +179,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2#a1aeeb9f44a499b7cb13fe785ebb2b660faffbfc"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2#08cc0c4c77e5d334140a9075568a5a431b4e0361"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -191,14 +191,14 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "a1aeeb9f44a499b7cb13fe785ebb2b660faffbfc"
+          "value": "08cc0c4c77e5d334140a9075568a5a431b4e0361"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "v1.8.0-rc1"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2%40a1aeeb9f44a499b7cb13fe785ebb2b660faffbfc",
+      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2%4008cc0c4c77e5d334140a9075568a5a431b4e0361",
       "type": "library",
       "version": "0.0.0"
     },
@@ -425,7 +425,7 @@
       "version": "2.4.0"
     },
     {
-      "bom-ref": "alembic==1.17.0",
+      "bom-ref": "alembic==1.17.1",
       "description": "A database migration tool for SQLAlchemy.",
       "externalReferences": [
         {
@@ -463,9 +463,9 @@
         }
       ],
       "name": "alembic",
-      "purl": "pkg:pypi/alembic@1.17.0",
+      "purl": "pkg:pypi/alembic@1.17.1",
       "type": "library",
-      "version": "1.17.0"
+      "version": "1.17.1"
     },
     {
       "bom-ref": "annotated-types==0.7.0",
@@ -857,7 +857,7 @@
       "version": "6.10.1"
     },
     {
-      "bom-ref": "cyclonedx-bom==7.2.0",
+      "bom-ref": "cyclonedx-bom==7.2.1",
       "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
       "externalReferences": [
         {
@@ -906,9 +906,9 @@
         }
       ],
       "name": "cyclonedx-bom",
-      "purl": "pkg:pypi/cyclonedx-bom@7.2.0",
+      "purl": "pkg:pypi/cyclonedx-bom@7.2.1",
       "type": "library",
-      "version": "7.2.0"
+      "version": "7.2.1"
     },
     {
       "bom-ref": "cyclonedx-python-lib==11.4.0",
@@ -3420,7 +3420,7 @@
       "version": "2.5.0"
     },
     {
-      "bom-ref": "virtualenv==20.35.3",
+      "bom-ref": "virtualenv==20.35.4",
       "description": "Virtual Python Environment builder",
       "externalReferences": [
         {
@@ -3453,9 +3453,9 @@
         }
       ],
       "name": "virtualenv",
-      "purl": "pkg:pypi/virtualenv@20.35.3",
+      "purl": "pkg:pypi/virtualenv@20.35.4",
       "type": "library",
-      "version": "20.35.3"
+      "version": "20.35.4"
     },
     {
       "bom-ref": "watchdog==5.0.3",
@@ -3571,7 +3571,7 @@
         "OpenStudioLandscapes==0.0.0",
         "PyYAML==6.0.3",
         "SnakeMD==2.4.0",
-        "cyclonedx-bom==7.2.0",
+        "cyclonedx-bom==7.2.1",
         "dagster==1.9.11",
         "docker-compose-graph==1.0.0",
         "graphviz==0.21",
@@ -3587,7 +3587,7 @@
         "OpenStudioLandscapes==0.0.0",
         "PyYAML==6.0.3",
         "SnakeMD==2.4.0",
-        "cyclonedx-bom==7.2.0",
+        "cyclonedx-bom==7.2.1",
         "dagster==1.9.11",
         "docker-compose-graph==1.0.0",
         "graphviz==0.21",
@@ -3603,7 +3603,7 @@
         "OpenStudioLandscapesUtil-HarborCLI==0.0.0",
         "PyYAML==6.0.3",
         "SnakeMD==2.4.0",
-        "cyclonedx-bom==7.2.0",
+        "cyclonedx-bom==7.2.1",
         "dagster-postgres==0.25.11",
         "dagster==1.9.11",
         "docker-compose-graph==1.0.0",
@@ -3651,7 +3651,7 @@
         "typing_extensions==4.15.0",
         "tzdata==2025.2"
       ],
-      "ref": "alembic==1.17.0"
+      "ref": "alembic==1.17.1"
     },
     {
       "dependsOn": [
@@ -3709,7 +3709,7 @@
         "pip-requirements-parser==32.0.1",
         "tomli==2.3.0"
       ],
-      "ref": "cyclonedx-bom==7.2.0"
+      "ref": "cyclonedx-bom==7.2.1"
     },
     {
       "dependsOn": [
@@ -3739,7 +3739,7 @@
         "Jinja2==3.1.6",
         "PyYAML==6.0.3",
         "SQLAlchemy==2.0.44",
-        "alembic==1.17.0",
+        "alembic==1.17.1",
         "antlr4-python3-runtime==4.13.2",
         "click==8.3.0",
         "coloredlogs==14.0",
@@ -3929,7 +3929,7 @@
         "humanize==4.14.0",
         "packaging==25.0",
         "tomli==2.3.0",
-        "virtualenv==20.35.3"
+        "virtualenv==20.35.4"
       ],
       "ref": "nox==2025.10.16"
     },
@@ -3961,7 +3961,7 @@
         "graphviz==0.21",
         "packaging==25.0",
         "pip==25.3",
-        "virtualenv==20.35.3"
+        "virtualenv==20.35.4"
       ],
       "ref": "pipdeptree==2.29.0"
     },
@@ -4074,7 +4074,7 @@
         "pip==25.3",
         "platformdirs==4.5.0",
         "tomli==2.3.0",
-        "virtualenv==20.35.3"
+        "virtualenv==20.35.4"
       ],
       "ref": "setuptools==80.9.0"
     },
@@ -4145,7 +4145,7 @@
         "setuptools==80.9.0",
         "typing_extensions==4.15.0"
       ],
-      "ref": "virtualenv==20.35.3"
+      "ref": "virtualenv==20.35.4"
     },
     {
       "dependsOn": [
@@ -4158,7 +4158,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2025-10-28T22:25:18.922672+00:00",
+    "timestamp": "2025-10-29T16:31:58.711535+00:00",
     "tools": {
       "components": [
         {
@@ -4208,7 +4208,7 @@
           ],
           "name": "cyclonedx-py",
           "type": "application",
-          "version": "7.2.0"
+          "version": "7.2.1"
         },
         {
           "description": "Python library for CycloneDX",
@@ -4262,7 +4262,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:fb6544e5-0414-4996-a6e8-5eb410190332",
+  "serialNumber": "urn:uuid:d33d2c81-d4e2-435b-bb03-d8f9d772f8f7",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
