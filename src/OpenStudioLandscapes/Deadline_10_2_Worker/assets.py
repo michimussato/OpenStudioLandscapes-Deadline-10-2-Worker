@@ -101,9 +101,19 @@ docker_config_json = get_docker_config_json(
         "docker_config_json": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "docker_config_json"]),
         ),
-        "group_in": AssetIn(
-            AssetKey([*ASSET_HEADER_BASE["key_prefix"], str(GroupIn.BASE_IN)])
+        "docker_config": AssetIn(
+            AssetKey([*ASSET_HEADER["key_prefix"], "docker_config"])
         ),
+        # "group_in": AssetIn(
+        #     AssetKey([*ASSET_HEADER_BASE["key_prefix"], str(GroupIn.BASE_IN)])
+        # ),
+        # Todo:
+        #  - [ ] this dependency should be coming from AssetKey([*ASSET_HEADER["key_prefix"], "group_in"])
+        "build_docker_image_stem": AssetIn(
+            AssetKey([*ASSET_HEADER_PARENT["key_prefix"], "build_docker_image"]),
+        ),
+        # Todo:
+        #  - [ ] this dependency should be coming from AssetKey([*ASSET_HEADER["key_prefix"], "group_in"])
         "deadline_command_build_client_image_10_2": AssetIn(
             AssetKey(
                 [
@@ -118,12 +128,14 @@ def build_docker_image_client(
     context: AssetExecutionContext,
     env: dict,  # pylint: disable=redefined-outer-name
     docker_config_json: pathlib.Path,  # pylint: disable=redefined-outer-name
-    group_in: dict,  # pylint: disable=redefined-outer-name
+    docker_config: DockerConfig,  # pylint: disable=redefined-outer-name
+    # group_in: dict,  # pylint: disable=redefined-outer-name
+    build_docker_image_stem: dict,  # pylint: disable=redefined-outer-name
     deadline_command_build_client_image_10_2: list,  # pylint: disable=redefined-outer-name
 ) -> Generator[Output[dict] | AssetMaterialization, None, None]:
     """ """
 
-    docker_image: dict = group_in["docker_image"]
+    # docker_image: dict = group_in["docker_image"]
 
     # Todo:
     #  - [ ] Create dynamic yet persistent hostname so that we can use THE SAME
@@ -157,7 +169,7 @@ def build_docker_image_client(
         build_base_parent_image_tags
     ) = get_image_metadata(
         context=context,
-        docker_image=docker_image,
+        docker_image=build_docker_image_stem,
         docker_config=docker_config,
         env=env,
     )
@@ -215,7 +227,7 @@ def build_docker_image_client(
         image_name=image_name,
         image_prefixes=image_prefixes,
         tags=tags,
-        docker_image=docker_image,
+        docker_image=build_docker_image_stem,
         docker_config=docker_config,
         docker_config_json=docker_config_json,
         docker_file=docker_file,
