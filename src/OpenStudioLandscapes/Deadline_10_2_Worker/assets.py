@@ -459,8 +459,9 @@ def compose_pulse_runner(
             "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
             # https://docs.docker.com/reference/compose-file/services/#restart
             "restart": "on-failure:3",
-            "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
-            % (build["image_name"], build["image_tags"][0]),
+            # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
+            # % (build["image_name"], build["image_tags"][0]),
+            "image": "%s:%s" % (build["image_name"], build["image_tags"][0]),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
             **copy.deepcopy(ports_dict),
@@ -586,8 +587,9 @@ def compose_worker_runner(
             # "hostname": host_name,
             "domainname": env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"],
             "restart": "always",
-            "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
-            % (build["image_name"], build["image_tags"][0]),
+            # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
+            # % (build["image_name"], build["image_tags"][0]),
+            "image": "%s:%s" % (build["image_name"], build["image_tags"][0]),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
             **copy.deepcopy(volumes_dict),
