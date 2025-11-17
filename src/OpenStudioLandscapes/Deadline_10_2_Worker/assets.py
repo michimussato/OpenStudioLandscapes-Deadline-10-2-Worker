@@ -461,7 +461,7 @@ def compose_pulse_runner(
             "restart": "on-failure:3",
             # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             # % (build["image_name"], build["image_tags"][0]),
-            "image": "%s:%s" % (build["image_name"], build["image_tags"][0]),
+                "image": "%s%s:%s" % (build["image_prefixes"], build["image_name"], build["image_tags"][0]),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
             **copy.deepcopy(ports_dict),
@@ -589,7 +589,7 @@ def compose_worker_runner(
             "restart": "always",
             # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             # % (build["image_name"], build["image_tags"][0]),
-            "image": "%s:%s" % (build["image_name"], build["image_tags"][0]),
+                "image": "%s%s:%s" % (build["image_prefixes"], build["image_name"], build["image_tags"][0]),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
             **copy.deepcopy(volumes_dict),
