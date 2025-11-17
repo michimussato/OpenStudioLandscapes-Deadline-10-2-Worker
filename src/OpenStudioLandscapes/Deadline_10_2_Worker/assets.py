@@ -101,19 +101,9 @@ docker_config_json = get_docker_config_json(
         "docker_config_json": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "docker_config_json"]),
         ),
-        # "docker_image": AssetIn(
-        #     AssetKey([*ASSET_HEADER["key_prefix"], "docker_image"])
-        # ),
         "group_in": AssetIn(
             AssetKey([*ASSET_HEADER_BASE["key_prefix"], str(GroupIn.BASE_IN)])
         ),
-        # Todo:
-        #  - [ ] this dependency should be coming from AssetKey([*ASSET_HEADER["key_prefix"], "group_in"])
-        # "build_base_image_data": AssetIn(
-        #     AssetKey([*ASSET_HEADER_PARENT["key_prefix"], "build_docker_image"]),
-        # ),
-        # Todo:
-        #  - [ ] this dependency should be coming from AssetKey([*ASSET_HEADER["key_prefix"], "group_in"])
         "deadline_command_build_client_image_10_2": AssetIn(
             AssetKey(
                 [
@@ -129,7 +119,6 @@ def build_docker_image_client(
     env: dict,  # pylint: disable=redefined-outer-name
     docker_config_json: pathlib.Path,  # pylint: disable=redefined-outer-name
     group_in: dict,  # pylint: disable=redefined-outer-name
-    # build_base_image_data: dict,  # pylint: disable=redefined-outer-name
     deadline_command_build_client_image_10_2: list,  # pylint: disable=redefined-outer-name
 ) -> Generator[Output[dict] | AssetMaterialization, None, None]:
     """ """
