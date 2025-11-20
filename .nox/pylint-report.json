@@ -1131,19 +1131,6 @@
         "message-id": "C0114"
     },
     {
-        "type": "error",
-        "module": "OpenStudioLandscapes.Deadline_10_2_Worker.constants",
-        "obj": "",
-        "line": 24,
-        "column": 0,
-        "endLine": 26,
-        "endColumn": 1,
-        "path": "src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py",
-        "symbol": "import-error",
-        "message": "Unable to import 'OpenStudioLandscapes.Deadline_10_2.constants'",
-        "message-id": "E0401"
-    },
-    {
         "type": "convention",
         "module": "OpenStudioLandscapes.Deadline_10_2_Worker.constants",
         "obj": "",
@@ -1155,19 +1142,6 @@
         "symbol": "wrong-import-position",
         "message": "Import \"from OpenStudioLandscapes.Deadline_10_2.constants import ASSET_HEADER as ASSET_HEADER_PARENT\" should be placed at the top of the module",
         "message-id": "C0413"
-    },
-    {
-        "type": "error",
-        "module": "OpenStudioLandscapes.Deadline_10_2_Worker.constants",
-        "obj": "",
-        "line": 24,
-        "column": 0,
-        "endLine": 26,
-        "endColumn": 1,
-        "path": "src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py",
-        "symbol": "no-name-in-module",
-        "message": "No name 'Deadline_10_2' in module 'OpenStudioLandscapes'",
-        "message-id": "E0611"
     },
     {
         "type": "convention",

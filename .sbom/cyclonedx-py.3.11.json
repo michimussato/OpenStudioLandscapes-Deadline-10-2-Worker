@@ -149,7 +149,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes.git#18a047f47d0f63cfb3a20a7224a8b9905b20bcaa"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes.git#550affb497196c4b4b121f8c9ffcd7f3cd6316ef"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -161,10 +161,10 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "18a047f47d0f63cfb3a20a7224a8b9905b20bcaa"
+          "value": "550affb497196c4b4b121f8c9ffcd7f3cd6316ef"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes.git%4018a047f47d0f63cfb3a20a7224a8b9905b20bcaa",
+      "purl": "pkg:pypi/openstudiolandscapes@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes.git%40550affb497196c4b4b121f8c9ffcd7f3cd6316ef",
       "type": "library",
       "version": "0.0.0"
     },
@@ -175,7 +175,7 @@
         {
           "comment": "PackageSource: VCS 'git'",
           "type": "vcs",
-          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git#45057333d31955578fc0e02d11c0d9892cbf33a1"
+          "url": "https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git#29b1feaf6c0f6039224daa11c117c1c39e9ef1e4"
         },
         {
           "comment": "from packaging metadata Project-URL: Homepage",
@@ -187,10 +187,10 @@
       "properties": [
         {
           "name": "cdx:python:package:source:vcs:commit_id",
-          "value": "45057333d31955578fc0e02d11c0d9892cbf33a1"
+          "value": "29b1feaf6c0f6039224daa11c117c1c39e9ef1e4"
         }
       ],
-      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git%4045057333d31955578fc0e02d11c0d9892cbf33a1",
+      "purl": "pkg:pypi/openstudiolandscapes-deadline-10-2@0.0.0?vcs_url=git%2Bhttps://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git%4029b1feaf6c0f6039224daa11c117c1c39e9ef1e4",
       "type": "library",
       "version": "0.0.0"
     },
@@ -4122,7 +4122,7 @@
     }
   ],
   "metadata": {
-    "timestamp": "2025-11-20T13:36:51.236368+00:00",
+    "timestamp": "2025-11-20T19:49:39.102404+00:00",
     "tools": {
       "components": [
         {
@@ -4226,7 +4226,7 @@
       ]
     }
   },
-  "serialNumber": "urn:uuid:741ba51a-d17f-40a3-a8b8-2baf2914be60",
+  "serialNumber": "urn:uuid:30f18b1c-d5a3-4376-b99b-f76d6427d732",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
