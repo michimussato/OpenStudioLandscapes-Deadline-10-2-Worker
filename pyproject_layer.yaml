@@ -13,8 +13,12 @@ project:
     - OpenStudioLandscapes-Deadline-10-2-Worker[readme]
     nox:
     - OpenStudioLandscapes-Deadline-10-2-Worker[testing]
+    - OpenStudioLandscapes-Deadline-10-2 @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git
+    readme:
+    - OpenStudioLandscapes-Deadline-10-2 @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git
     sbom:
     - OpenStudioLandscapes-Deadline-10-2-Worker[graphviz]
+    - OpenStudioLandscapes-Deadline-10-2 @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git
   urls:
     Homepage: https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2-Worker
 tool:
