@@ -439,7 +439,13 @@ def compose_pulse_runner(
 
     for i in range(NUM_SERVICES):
         service_name = f"{service_name_base}-{str(i+1).zfill(padding)}"
-        container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
+        container_name, _ = get_docker_compose_names(
+            context=context,
+            service_name=service_name,
+            landscape_id=env.get("LANDSCAPE", "default"),
+            domain_lan=env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+        )
+        # container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
         # host_name = ".".join([env["HOSTNAME_PULSE_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
 
         # # deadlinepulse does not have a -name flag
@@ -574,7 +580,13 @@ def compose_worker_runner(
 
     for i in range(NUM_SERVICES):
         service_name = f"{service_name_base}-{str(i+1).zfill(padding)}"
-        container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
+        container_name, _ = get_docker_compose_names(
+            context=context,
+            service_name=service_name,
+            landscape_id=env.get("LANDSCAPE", "default"),
+            domain_lan=env.get("OPENSTUDIOLANDSCAPES__DOMAIN_LAN"),
+        )
+        # container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
         # host_name = ".".join([env["HOSTNAME_WORKER_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
 
         deadline_command_compose_worker_runner_10_2.extend(["-name", str(service_name)])
