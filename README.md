@@ -169,13 +169,9 @@ The following variables are being declared in `OpenStudioLandscapes.Deadline_10_
 
 #### Feature Config: default
 
-| Variable                    | Type   | Value   |
-| :-------------------------- | :----- | :------ |
-| `DOCKER_USE_CACHE`          | `bool` | `False` |
-| `HOSTNAME_PULSE_RUNNER`     | `str`  | ``      |
-| `HOSTNAME_WORKER_RUNNER`    | `str`  | ``      |
-| `TELEPORT_ENTRY_POINT_HOST` | `str`  | ``      |
-| `TELEPORT_ENTRY_POINT_PORT` | `str`  | ``      |
+| Variable           | Type   | Value   |
+| :----------------- | :----- | :------ |
+| `DOCKER_USE_CACHE` | `bool` | `False` |
 
 # Community
 

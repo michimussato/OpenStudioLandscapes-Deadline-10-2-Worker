@@ -31,8 +31,8 @@ from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_ou
 from OpenStudioLandscapes.engine.common_assets.group_in import get_group_in
 from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
 from OpenStudioLandscapes.engine.enums import *
-from OpenStudioLandscapes.engine.utils import *
 from OpenStudioLandscapes.engine.policies.retry import build_docker_image_retry_policy
+from OpenStudioLandscapes.engine.utils import *
 
 from OpenStudioLandscapes.Deadline_10_2_Worker.constants import *
 
