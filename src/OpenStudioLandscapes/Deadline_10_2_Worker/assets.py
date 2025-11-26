@@ -4,7 +4,6 @@ import pathlib
 import shlex
 import shutil
 import textwrap
-import time
 import urllib.parse
 from typing import Any, Generator
 
@@ -31,10 +30,9 @@ from OpenStudioLandscapes.engine.common_assets.env import get_env
 from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out
 from OpenStudioLandscapes.engine.common_assets.group_in import get_group_in
 from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
-from OpenStudioLandscapes.engine.constants import *
 from OpenStudioLandscapes.engine.enums import *
 from OpenStudioLandscapes.engine.utils import *
-from OpenStudioLandscapes.engine.utils.docker import *
+from OpenStudioLandscapes.engine.policies.retry import build_docker_image_retry_policy
 
 from OpenStudioLandscapes.Deadline_10_2_Worker.constants import *
 
@@ -123,6 +121,7 @@ docker_config_json = get_docker_config_json(
             ),
         ),
     },
+    retry_policy=build_docker_image_retry_policy,
 )
 def build_docker_image_client(
     context: AssetExecutionContext,
