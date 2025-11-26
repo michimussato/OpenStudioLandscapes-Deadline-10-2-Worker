@@ -48,10 +48,8 @@ ASSET_HEADER = {
 FEATURE_CONFIGS = {
     OpenStudioLandscapesConfig.DEFAULT: {
         "DOCKER_USE_CACHE": DOCKER_USE_CACHE,
-        "HOSTNAME_PULSE_RUNNER": "",  # Will be assigned dynamically
-        "HOSTNAME_WORKER_RUNNER": "",  # Will be assigned dynamically
-        "TELEPORT_ENTRY_POINT_HOST": "",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
-        "TELEPORT_ENTRY_POINT_PORT": "",  # Either a hardcoded str or a ref to a Variable (with double {{ }}!)
+        # "HOSTNAME_PULSE_RUNNER": "",  # Will be assigned dynamically
+        # "HOSTNAME_WORKER_RUNNER": "",  # Will be assigned dynamically
     }
 }
 # @formatter:on
