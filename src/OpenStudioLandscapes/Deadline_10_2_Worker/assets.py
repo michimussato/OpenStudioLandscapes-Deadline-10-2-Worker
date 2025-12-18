@@ -5,7 +5,7 @@ import shlex
 import shutil
 import textwrap
 import urllib.parse
-from typing import Any, Generator
+from typing import Any, Generator, Dict, List
 
 import yaml
 from dagster import (
@@ -77,11 +77,11 @@ compose = get_compose(
 feature_out = get_feature_out(
     ASSET_HEADER=ASSET_HEADER,
     feature_out_ins={
-        "env": dict,
-        "compose": dict,
-        "group_in": dict,
-        "deadline_command_compose_worker_runner": list,
-        "deadline_command_compose_pulse_runner": list,
+        "env": Dict,
+        "compose": Dict,
+        "group_in": Dict,
+        "deadline_command_compose_worker_runner": List,
+        "deadline_command_compose_pulse_runner": List,
     },
 )
 
@@ -126,16 +126,16 @@ docker_config_json = get_docker_config_json(
 )
 def build_docker_image_client(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
     docker_config_json: pathlib.Path,  # pylint: disable=redefined-outer-name
     docker_config: DockerConfig,  # pylint: disable=redefined-outer-name
-    # group_in: dict,  # pylint: disable=redefined-outer-name
-    build_docker_image_stem: dict,  # pylint: disable=redefined-outer-name
-    deadline_command_build_client_image_10_2: list,  # pylint: disable=redefined-outer-name
-) -> Generator[Output[dict] | AssetMaterialization, None, None]:
+    # group_in: Dict,  # pylint: disable=redefined-outer-name
+    build_docker_image_stem: Dict,  # pylint: disable=redefined-outer-name
+    deadline_command_build_client_image_10_2: List,  # pylint: disable=redefined-outer-name
+) -> Generator[Output[Dict] | AssetMaterialization, None, None]:
     """ """
 
-    # docker_image: dict = group_in["docker_image"]
+    # docker_image: Dict = group_in["docker_image"]
 
     # Todo:
     #  - [ ] Create dynamic yet persistent hostname so that we can use THE SAME
@@ -256,7 +256,7 @@ def build_docker_image_client(
 )
 def deadline_ini(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
     # Todo:
 ) -> Generator[Output[pathlib.Path] | AssetMaterialization, None, None]:
     # @formatter:off
@@ -377,12 +377,12 @@ def deadline_ini(
 )
 def compose_pulse_runner(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
-    build: dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
+    build: Dict,  # pylint: disable=redefined-outer-name
     deadline_ini_10_2: pathlib.Path,  # pylint: disable=redefined-outer-name
-    deadline_command_compose_pulse_runner_10_2: list,  # pylint: disable=redefined-outer-name
-    compose_networks_10_2: dict,  # pylint: disable=redefined-outer-name
-) -> Generator[Output[dict[str, dict[str, dict]]] | AssetMaterialization, None, None]:
+    deadline_command_compose_pulse_runner_10_2: List,  # pylint: disable=redefined-outer-name
+    compose_networks_10_2: Dict,  # pylint: disable=redefined-outer-name
+) -> Generator[Output[Dict[str, Dict[str, Dict]]] | AssetMaterialization, None, None]:
     """ """
 
     network_dict = {}
@@ -518,12 +518,12 @@ def compose_pulse_runner(
 )
 def compose_worker_runner(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
-    build: dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
+    build: Dict,  # pylint: disable=redefined-outer-name
     deadline_ini_10_2: pathlib.Path,  # pylint: disable=redefined-outer-name
-    deadline_command_compose_worker_runner_10_2: list,  # pylint: disable=redefined-outer-name
-    compose_networks_10_2: dict,  # pylint: disable=redefined-outer-name
-) -> Generator[Output[dict[str, dict[str, dict]]] | AssetMaterialization, None, None]:
+    deadline_command_compose_worker_runner_10_2: List,  # pylint: disable=redefined-outer-name
+    compose_networks_10_2: Dict,  # pylint: disable=redefined-outer-name
+) -> Generator[Output[Dict[str, Dict[str, Dict]]] | AssetMaterialization, None, None]:
     """ """
 
     network_dict = {}
@@ -639,9 +639,9 @@ def compose_worker_runner(
 )
 def compose_networks(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
+    env: Dict,  # pylint: disable=redefined-outer-name
 ) -> Generator[
-    Output[dict[str, dict[str, dict[str, str]]]] | AssetMaterialization, None, None
+    Output[Dict[str, Dict[str, Dict[str, str]]]] | AssetMaterialization, None, None
 ]:
 
     compose_network_mode = DockerComposePolicies.NETWORK_MODE.HOST
@@ -682,7 +682,7 @@ def compose_networks(
 def compose_maps(
     context: AssetExecutionContext,
     **kwargs,  # pylint: disable=redefined-outer-name
-) -> Generator[Output[list[dict]] | AssetMaterialization, None, None]:
+) -> Generator[Output[List[Dict]] | AssetMaterialization, None, None]:
 
     ret = list(kwargs.values())
 
@@ -715,10 +715,10 @@ def compose_maps(
 # )
 # def compose_up_and_set_hostname(
 #         context: AssetExecutionContext,
-#         env: dict,  # pylint: disable=redefined-outer-name
-#         cmd_docker_compose_up_dict: dict[str, list],  # pylint: disable=redefined-outer-name,
-#         compose_pulse_runner: dict,  # pylint: disable=redefined-outer-name,
-#         compose_worker_runner: dict,  # pylint: disable=redefined-outer-name,
+#         env: Dict,  # pylint: disable=redefined-outer-name
+#         cmd_docker_compose_up_dict: Dict[str, List],  # pylint: disable=redefined-outer-name,
+#         compose_pulse_runner: Dict,  # pylint: disable=redefined-outer-name,
+#         compose_worker_runner: Dict,  # pylint: disable=redefined-outer-name,
 # ):
 #
 #     # Todo:
@@ -726,8 +726,8 @@ def compose_maps(
 #     #  - [ ] cmd_compose_up_and_hostname can become pretty lengthy in case NUM_SERVICES is high
 #     #        maybe there is a better way to tell bash to rename all the container hostnames
 #
-#     compose_pulse_runner_services = list(compose_pulse_runner["services"].keys())
-#     compose_worker_runner_services = list(compose_worker_runner["services"].keys())
+#     compose_pulse_runner_services = List(compose_pulse_runner["services"].keys())
+#     compose_worker_runner_services = List(compose_worker_runner["services"].keys())
 #
 #     # Example cmd:
 #     # /usr/bin/docker compose --file /home/michael/git/repos/OpenStudioLandscapes/.landscapes/2025-04-08-10-45-09-df78673952cc4499a80407d91bd404f4/Deadline_10_2_Worker__Deadline_10_2_Worker/Deadline_10_2_Worker__group_out/docker_compose/docker-compose.yml --project-name 2025-04-08-10-45-09-df78673952cc4499a80407d91bd404f4-worker up --detach --remove-orphans && sudo nsenter --target $(docker inspect -f '{{ .State.Pid }}' deadline-10-2-worker-001) --uts hostname "$(hostname -f)-nice-hack"
@@ -845,8 +845,8 @@ def compose_maps(
 )
 def deadline_command_compose_worker_runner(
     context: AssetExecutionContext,
-    features_in: dict,
-) -> Generator[Output[list[str]] | AssetMaterialization, None, None]:
+    features_in: Dict,
+) -> Generator[Output[List[str]] | AssetMaterialization, None, None]:
 
     context.log.info(features_in)
 
@@ -871,8 +871,8 @@ def deadline_command_compose_worker_runner(
 )
 def deadline_command_compose_pulse_runner(
     context: AssetExecutionContext,
-    features_in: dict,
-) -> Generator[Output[list[str]] | AssetMaterialization, None, None]:
+    features_in: Dict,
+) -> Generator[Output[List[str]] | AssetMaterialization, None, None]:
 
     context.log.info(features_in)
 
@@ -895,7 +895,7 @@ def deadline_command_compose_pulse_runner(
 )
 def cmd_extend(
     context: AssetExecutionContext,
-) -> Generator[Output[list[Any]] | AssetMaterialization | Any, Any, None]:
+) -> Generator[Output[List[Any]] | AssetMaterialization | Any, Any, None]:
 
     ret = ["--detach"]
 
@@ -922,9 +922,9 @@ def cmd_extend(
 )
 def cmd_append(
     context: AssetExecutionContext,
-    env: dict,  # pylint: disable=redefined-outer-name
-    compose: dict,  # pylint: disable=redefined-outer-name,
-) -> Generator[Output[dict[str, list[Any]]] | AssetMaterialization | Any, Any, None]:
+    env: Dict,  # pylint: disable=redefined-outer-name
+    compose: Dict,  # pylint: disable=redefined-outer-name,
+) -> Generator[Output[Dict[str, List[Any]]] | AssetMaterialization | Any, Any, None]:
 
     ret = {"cmd": [], "exclude_from_quote": []}
 
