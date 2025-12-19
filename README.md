@@ -5,7 +5,6 @@
 1. [Feature: OpenStudioLandscapes-Deadline-10-2-Worker](#feature-openstudiolandscapes-deadline-10-2-worker)
    1. [Brief](#brief)
    2. [Configuration](#configuration)
-   3. [Official Resources](#official-resources)
 2. [Instructions](#instructions)
    1. [Known Issues](#known-issues)
       1. [Failed to establish connection to due to a communication error.](#failed-to-establish-connection-to-due-to-a-communication-error)
@@ -77,8 +76,6 @@ key_prefixes:
 ```
 
 ***
-
-## Official Resources
 
 # Instructions
 
@@ -244,4 +241,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 15:51:31 UTC**.
+Last changed: **2025-12-19 16:41:26 UTC**
