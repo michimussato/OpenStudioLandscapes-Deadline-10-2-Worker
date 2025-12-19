@@ -5,7 +5,7 @@
 1. [Feature: OpenStudioLandscapes-Deadline-10-2-Worker](#feature-openstudiolandscapes-deadline-10-2-worker)
    1. [Brief](#brief)
    2. [Configuration](#configuration)
-2. [Instructions](#instructions)
+2. [External Resources](#external-resources)
    1. [Known Issues](#known-issues)
       1. [Failed to establish connection to due to a communication error.](#failed-to-establish-connection-to-due-to-a-communication-error)
 3. [Community](#community)
@@ -77,7 +77,7 @@ key_prefixes:
 
 ***
 
-# Instructions
+# External Resources
 
 This is an extension Feature for `OpenStudioLandscapes-Deadline-10-2`. For more information see the `README.md` there:
 
@@ -241,4 +241,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 16:47:50 UTC**
+Last changed: **2025-12-19 21:11:30 UTC**
