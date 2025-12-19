@@ -5,7 +5,7 @@ import shlex
 import shutil
 import textwrap
 import urllib.parse
-from typing import Any, Generator, Dict, List, Union
+from typing import Any, Dict, Generator, List, Union
 
 import yaml
 from dagster import (
@@ -13,19 +13,27 @@ from dagster import (
     AssetIn,
     AssetKey,
     AssetMaterialization,
+    AssetsDefinition,
     MetadataValue,
     Output,
-    asset, AssetsDefinition,
+    asset,
+)
+
+# Override default ConfigParent
+from OpenStudioLandscapes.Deadline_10_2.config.models import Config as ConfigParent
+from OpenStudioLandscapes.Deadline_10_2.constants import (
+    ASSET_HEADER as ASSET_HEADER_FEATURE_IN,
 )
 from OpenStudioLandscapes.engine.common_assets.compose import get_compose
-
 from OpenStudioLandscapes.engine.common_assets.docker_compose_graph import (
     get_docker_compose_graph,
 )
-
 from OpenStudioLandscapes.engine.common_assets.feature import get_feature__CONFIG
 from OpenStudioLandscapes.engine.common_assets.feature_out import get_feature_out_v2
-from OpenStudioLandscapes.engine.common_assets.group_in import get_feature_in, get_feature_in_parent
+from OpenStudioLandscapes.engine.common_assets.group_in import (
+    get_feature_in,
+    get_feature_in_parent,
+)
 from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
 from OpenStudioLandscapes.engine.config.models import ConfigEngine, DockerConfigModel
 from OpenStudioLandscapes.engine.constants import ASSET_HEADER_BASE
@@ -38,11 +46,6 @@ from OpenStudioLandscapes.engine.utils.docker.compose_dicts import *
 from OpenStudioLandscapes.Deadline_10_2_Worker import dist
 from OpenStudioLandscapes.Deadline_10_2_Worker.config.models import CONFIG_STR, Config
 from OpenStudioLandscapes.Deadline_10_2_Worker.constants import *
-
-# Override default ConfigParent
-from OpenStudioLandscapes.Deadline_10_2.config.models import Config as ConfigParent
-from OpenStudioLandscapes.Deadline_10_2.constants import ASSET_HEADER as ASSET_HEADER_FEATURE_IN
-
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
 yaml.SafeDumper.add_multi_representer(
@@ -132,7 +135,9 @@ def build_docker_image_client(
 
     docker_config: DockerConfigModel = config_engine.openstudiolandscapes__docker_config
 
-    docker_config_json: pathlib.Path = feature_in.openstudiolandscapes_base.docker_config_json
+    docker_config_json: pathlib.Path = (
+        feature_in.openstudiolandscapes_base.docker_config_json
+    )
 
     # Todo:
     #  - [ ] Create dynamic yet persistent hostname so that we can use THE SAME
@@ -406,9 +411,7 @@ def compose_pulse_runner(
         network_dict = {
             "networks": list(compose_networks_10_2.get("networks", {}).keys())
         }
-        ports_dict = {
-            "ports": []
-        }
+        ports_dict = {"ports": []}
     elif "network_mode" in compose_networks_10_2:
         network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
 
@@ -549,9 +552,7 @@ def compose_worker_runner(
         network_dict = {
             "networks": list(compose_networks_10_2.get("networks", {}).keys())
         }
-        ports_dict = {
-            "ports": []
-        }
+        ports_dict = {"ports": []}
     elif "network_mode" in compose_networks_10_2:
         network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
 
@@ -709,7 +710,12 @@ def compose_maps(
     **ASSET_HEADER,
     ins={
         "deadline_command_compose_worker_runner": AssetIn(
-            AssetKey([*ASSET_HEADER_FEATURE_IN["key_prefix"], "deadline_command_compose_worker_runner"]),
+            AssetKey(
+                [
+                    *ASSET_HEADER_FEATURE_IN["key_prefix"],
+                    "deadline_command_compose_worker_runner",
+                ]
+            ),
         ),
     },
 )
@@ -723,7 +729,9 @@ def deadline_command_compose_worker_runner(
     yield AssetMaterialization(
         asset_key=context.asset_key,
         metadata={
-            "__".join(context.asset_key.path): MetadataValue.json(deadline_command_compose_worker_runner),
+            "__".join(context.asset_key.path): MetadataValue.json(
+                deadline_command_compose_worker_runner
+            ),
         },
     )
 
@@ -732,7 +740,12 @@ def deadline_command_compose_worker_runner(
     **ASSET_HEADER,
     ins={
         "deadline_command_compose_pulse_runner": AssetIn(
-            AssetKey([*ASSET_HEADER_FEATURE_IN["key_prefix"], "deadline_command_compose_pulse_runner"]),
+            AssetKey(
+                [
+                    *ASSET_HEADER_FEATURE_IN["key_prefix"],
+                    "deadline_command_compose_pulse_runner",
+                ]
+            ),
         ),
     },
 )
@@ -746,7 +759,9 @@ def deadline_command_compose_pulse_runner(
     yield AssetMaterialization(
         asset_key=context.asset_key,
         metadata={
-            "__".join(context.asset_key.path): MetadataValue.json(deadline_command_compose_pulse_runner),
+            "__".join(context.asset_key.path): MetadataValue.json(
+                deadline_command_compose_pulse_runner
+            ),
         },
     )
 
@@ -816,8 +831,9 @@ def cmd_append(
     # - $(hostname)-deadline-10-2-pulse-worker-001...nnn
     for service_name in compose_services:
 
-        target_worker = "$($(which docker) inspect -f '{{ .State.Pid }}' %s)" % ".".join(
-            [service_name, env.get("LANDSCAPE", "default")]
+        target_worker = (
+            "$($(which docker) inspect -f '{{ .State.Pid }}' %s)"
+            % ".".join([service_name, env.get("LANDSCAPE", "default")])
         )
         hostname_worker = f"$(hostname)-{service_name}"
 
