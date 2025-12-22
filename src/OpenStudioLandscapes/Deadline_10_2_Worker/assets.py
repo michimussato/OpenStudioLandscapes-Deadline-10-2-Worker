@@ -603,8 +603,6 @@ def compose_worker_runner(
             landscape_id=env.get("LANDSCAPE", "default"),
             domain_lan=config_engine.openstudiolandscapes__domain_lan,
         )
-        # container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
-        # host_name = ".".join([env["HOSTNAME_WORKER_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
 
         deadline_command_compose_worker_runner_10_2.extend(["-name", str(service_name)])
 
