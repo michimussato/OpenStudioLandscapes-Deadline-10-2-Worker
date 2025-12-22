@@ -344,7 +344,7 @@ def deadline_ini(
     deadline_client_ini = pathlib.Path(
         env["DOT_LANDSCAPES"],
         env.get("LANDSCAPE", "default"),
-        f"{ASSET_HEADER['group_name']}__{'__'.join(ASSET_HEADER['key_prefix'])}",
+        f"{dist.name}",
         "configs",
         "Deadline10",
         "deadline.ini",
@@ -406,56 +406,12 @@ def compose_pulse_runner(
 
     config_engine: ConfigEngine = CONFIG.config_engine
 
-    network_dict = {}
-    ports_dict = {}
-
-    if "networks" in compose_networks_10_2:
-        network_dict = {
-            "networks": list(compose_networks_10_2.get("networks", {}).keys())
-        }
-        ports_dict = {"ports": []}
-    elif "network_mode" in compose_networks_10_2:
-        network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
-
-    volumes_dict = {
-        "volumes": [
-            f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
-            f"{CONFIG_PARENT.deadline_10_2_repository_install_destination_expanded.as_posix()}:/opt/Thinkbox/DeadlineRepository10",
-        ]
-    }
-
-    # For portability, convert absolute volume paths to relative paths
-
-    _volume_relative = []
-
-    for v in volumes_dict["volumes"]:
-
-        host, container = v.split(":", maxsplit=1)
-
-        volume_dir_host_rel_path = get_relative_path_via_common_root(
-            context=context,
-            path_src=CONFIG.docker_compose_expanded,
-            path_dst=pathlib.Path(host),
-            path_common_root=pathlib.Path(env["DOT_LANDSCAPES"]),
-        )
-
-        _volume_relative.append(
-            f"{volume_dir_host_rel_path.as_posix()}:{container}",
-        )
-
-    volumes_dict = {
-        "volumes": [
-            *_volume_relative,
-        ]
-    }
-
     service_name_base = "deadline-10-2-pulse-worker"
-    padding = 3
 
     docker_dict = {"services": {}}
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
-        service_name = f"{service_name_base}-{str(i+1).zfill(padding)}"
+        service_name = f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
         container_name, _ = get_docker_compose_names(
             context=context,
             service_name=service_name,
@@ -465,13 +421,48 @@ def compose_pulse_runner(
         # container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
         # host_name = ".".join([env["HOSTNAME_PULSE_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
 
-        # # deadlinepulse does not have a -name flag
-        # deadline_command_compose_pulse_runner_10_2.extend(
-        #     [
-        #         "-name",
-        #         str(service_name)
-        #     ]
-        # )
+        network_dict = {}
+        ports_dict = {}
+
+        if "networks" in compose_networks_10_2:
+            network_dict = {
+                "networks": list(compose_networks_10_2.get("networks", {}).keys())
+            }
+            ports_dict = {"ports": []}
+        elif "network_mode" in compose_networks_10_2:
+            network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
+
+        volumes_dict = {
+            "volumes": [
+                f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
+                f"{CONFIG_PARENT.deadline_10_2_repository_install_destination_expanded.as_posix()}:/opt/Thinkbox/DeadlineRepository10",
+            ]
+        }
+
+        # For portability, convert absolute volume paths to relative paths
+
+        _volume_relative = []
+
+        for v in volumes_dict["volumes"]:
+
+            host, container = v.split(":", maxsplit=1)
+
+            volume_dir_host_rel_path = get_relative_path_via_common_root(
+                context=context,
+                path_src=CONFIG.docker_compose_expanded,
+                path_dst=pathlib.Path(host),
+                path_common_root=pathlib.Path(env["DOT_LANDSCAPES"]),
+            )
+
+            _volume_relative.append(
+                f"{volume_dir_host_rel_path.as_posix()}:{container}",
+            )
+
+        volumes_dict = {
+            "volumes": [
+                *_volume_relative,
+            ]
+        }
 
         service = {
             "container_name": container_name,
@@ -489,6 +480,13 @@ def compose_pulse_runner(
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
             **copy.deepcopy(ports_dict),
+            # # deadlinepulse does not have a -name flag
+            # deadline_command_compose_pulse_runner_10_2.extend(
+            #     [
+            #         "-name",
+            #         str(service_name)
+            #     ]
+            # )
             "command": deadline_command_compose_pulse_runner_10_2,
         }
 
@@ -547,62 +545,61 @@ def compose_worker_runner(
 
     config_engine: ConfigEngine = CONFIG.config_engine
 
-    network_dict = {}
-    ports_dict = {}
-
-    if "networks" in compose_networks_10_2:
-        network_dict = {
-            "networks": list(compose_networks_10_2.get("networks", {}).keys())
-        }
-        ports_dict = {"ports": []}
-    elif "network_mode" in compose_networks_10_2:
-        network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
-
-    volumes_dict = {
-        "volumes": [
-            f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
-            f"{CONFIG_PARENT.deadline_10_2_repository_install_destination_expanded.as_posix()}:/opt/Thinkbox/DeadlineRepository10",
-        ]
-    }
-
-    # For portability, convert absolute volume paths to relative paths
-
-    _volume_relative = []
-
-    for v in volumes_dict["volumes"]:
-
-        host, container = v.split(":", maxsplit=1)
-
-        volume_dir_host_rel_path = get_relative_path_via_common_root(
-            context=context,
-            path_src=CONFIG.docker_compose_expanded,
-            path_dst=pathlib.Path(host),
-            path_common_root=pathlib.Path(env["DOT_LANDSCAPES"]),
-        )
-
-        _volume_relative.append(
-            f"{volume_dir_host_rel_path.as_posix()}:{container}",
-        )
-
-    volumes_dict = {
-        "volumes": [
-            *_volume_relative,
-        ]
-    }
-
     service_name_base = "deadline-10-2-worker"
-    padding = 3
 
     docker_dict = {"services": {}}
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
-        service_name = f"{service_name_base}-{str(i+1).zfill(padding)}"
+        service_name = f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
         container_name, _ = get_docker_compose_names(
             context=context,
             service_name=service_name,
             landscape_id=env.get("LANDSCAPE", "default"),
             domain_lan=config_engine.openstudiolandscapes__domain_lan,
         )
+
+        network_dict = {}
+        ports_dict = {}
+
+        if "networks" in compose_networks_10_2:
+            network_dict = {
+                "networks": list(compose_networks_10_2.get("networks", {}).keys())
+            }
+            ports_dict = {"ports": []}
+        elif "network_mode" in compose_networks_10_2:
+            network_dict = {"network_mode": compose_networks_10_2["network_mode"]}
+
+        volumes_dict = {
+            "volumes": [
+                f"{deadline_ini_10_2.as_posix()}:/var/lib/Thinkbox/Deadline10/deadline.ini:ro",
+                f"{CONFIG_PARENT.deadline_10_2_repository_install_destination_expanded.as_posix()}:/opt/Thinkbox/DeadlineRepository10",
+            ]
+        }
+
+        # For portability, convert absolute volume paths to relative paths
+
+        _volume_relative = []
+
+        for v in volumes_dict["volumes"]:
+
+            host, container = v.split(":", maxsplit=1)
+
+            volume_dir_host_rel_path = get_relative_path_via_common_root(
+                context=context,
+                path_src=CONFIG.docker_compose_expanded,
+                path_dst=pathlib.Path(host),
+                path_common_root=pathlib.Path(env["DOT_LANDSCAPES"]),
+            )
+
+            _volume_relative.append(
+                f"{volume_dir_host_rel_path.as_posix()}:{container}",
+            )
+
+        volumes_dict = {
+            "volumes": [
+                *_volume_relative,
+            ]
+        }
 
         deadline_command_compose_worker_runner_10_2.extend(["-name", str(service_name)])
 
