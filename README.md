@@ -65,10 +65,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: typing.Dict
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # =============
@@ -77,10 +84,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: <class 'OpenStudioLandscapes.engine.config.models.ConfigEngine'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # =============
@@ -89,10 +103,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: <class 'OpenStudioLandscapes.engine.config.models.FeatureBaseModel'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # ============
@@ -101,10 +122,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: <class 'importlib.metadata.Distribution'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # ==========
@@ -113,10 +141,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: <class 'str'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # ============
@@ -125,10 +160,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: typing.List[str]
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         None
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 
 
 # =======
@@ -137,10 +179,17 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #
 # Type: <class 'bool'>
 # Base Class:
+#     Required: False
 #     Description:
 #         Whether the Feature is enabled or not.
 #     Default value:
 #         True
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 enabled: false
 
 
@@ -150,10 +199,17 @@ enabled: false
 #
 # Type: <class 'str'>
 # Base Class:
+#     Required: False
 #     Description:
 #         None
 #     Default value:
 #         default
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 compose_scope: worker
 
 
@@ -163,10 +219,17 @@ compose_scope: worker
 #
 # Type: <class 'str'>
 # Base Class:
+#     Required: True
 #     Description:
 #         The name of the feature. It is derived from the `OpenStudioLandscapes.<Feature>.dist` attribute.
 #     Default value:
 #         PydanticUndefined
+# Description:
+#     None
+# Required: False
+#     None
+# Examples:
+#     None
 feature_name: OpenStudioLandscapes-Deadline-10-2-Worker
 
 
@@ -176,10 +239,17 @@ feature_name: OpenStudioLandscapes-Deadline-10-2-Worker
 #
 # Type: <class 'pathlib.Path'>
 # Base Class:
+#     Required: False
 #     Description:
 #         The path to the `docker-compose.yml` file.
 #     Default value:
 #         {DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml
+# Description:
+#     The path to the `docker-compose.yml` file.
+# Required: False
+#     The path to the `docker-compose.yml` file.
+# Examples:
+#     None
 
 
 # ============================
@@ -187,7 +257,9 @@ feature_name: OpenStudioLandscapes-Deadline-10-2-Worker
 # ----------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -199,7 +271,9 @@ deadline_10_2_worker_PADDING: 3
 # ---------------------------------
 #
 # Type: <class 'int'>
-# Sub Class Description:
+# Description:
+#     Number of workers to simulate in parallel.
+# Required: False
 #     Number of workers to simulate in parallel.
 # Examples:
 #     None
@@ -211,7 +285,9 @@ deadline_10_2_worker_NUM_SERVICES: 1
 # -----------------------------
 #
 # Type: <class 'pathlib.Path'>
-# Sub Class Description:
+# Description:
+#     None
+# Required: False
 #     None
 # Examples:
 #     None
@@ -387,4 +463,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 12:26:14 UTC**
+Last changed: **2025-12-23 12:48:34 UTC**
