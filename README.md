@@ -192,7 +192,7 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 #     Default value:
 #         True
 # Description:
-#     None
+#     # Not enabled by default because this Feature has some basic requirements, such as the installers.
 # Required:
 #     False
 # Examples:
@@ -473,4 +473,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 13:04:15 UTC**
+Last changed: **2025-12-23 13:34:58 UTC**
