@@ -59,19 +59,165 @@ A local config store location will be created if it doesn't exist, together with
 The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Worker` and are accessible throughout the [`OpenStudioLandscapes-Deadline-10-2-Worker`](https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2-Worker/tree/main/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py) package.
 
 ```yaml
-# Base Information
-group_name: "OpenStudioLandscapes_Deadline_10_2_Worker"
-key_prefixes:
-  - "OpenStudioLandscapes_Deadline_10_2_Worker"
+# ===
+# env
+# ---
+#
+# Type: typing.Dict
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
 
-#compose_scope: "worker"
 
-# Not enabled by default because this Feature
-# has some basic requirements, such as
-# the installers
-#enabled: false
+# =============
+# config_engine
+# -------------
+#
+# Type: <class 'OpenStudioLandscapes.engine.config.models.ConfigEngine'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
 
-#deadline_10_2_worker_NUM_SERVICES: 1
+
+# =============
+# config_parent
+# -------------
+#
+# Type: <class 'OpenStudioLandscapes.engine.config.models.FeatureBaseModel'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# ============
+# distribution
+# ------------
+#
+# Type: <class 'importlib.metadata.Distribution'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# ==========
+# group_name
+# ----------
+#
+# Type: <class 'str'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# ============
+# key_prefixes
+# ------------
+#
+# Type: typing.List[str]
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         None
+
+
+# =======
+# enabled
+# -------
+#
+# Type: <class 'bool'>
+# Base Class:
+#     Description:
+#         Whether the Feature is enabled or not.
+#     Default value:
+#         True
+enabled: false
+
+
+# =============
+# compose_scope
+# -------------
+#
+# Type: <class 'str'>
+# Base Class:
+#     Description:
+#         None
+#     Default value:
+#         default
+compose_scope: worker
+
+
+# ============
+# feature_name
+# ------------
+#
+# Type: <class 'str'>
+# Base Class:
+#     Description:
+#         The name of the feature. It is derived from the `OpenStudioLandscapes.<Feature>.dist` attribute.
+#     Default value:
+#         PydanticUndefined
+feature_name: OpenStudioLandscapes-Deadline-10-2-Worker
+
+
+# ==============
+# docker_compose
+# --------------
+#
+# Type: <class 'pathlib.Path'>
+# Base Class:
+#     Description:
+#         The path to the `docker-compose.yml` file.
+#     Default value:
+#         {DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml
+
+
+# ============================
+# deadline_10_2_worker_PADDING
+# ----------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+deadline_10_2_worker_PADDING: 3
+
+
+# =================================
+# deadline_10_2_worker_NUM_SERVICES
+# ---------------------------------
+#
+# Type: <class 'int'>
+# Sub Class Description:
+#     Number of workers to simulate in parallel.
+# Examples:
+#     None
+deadline_10_2_worker_NUM_SERVICES: 1
+
+
+# =============================
+# deadline_10_2__worker_storage
+# -----------------------------
+#
+# Type: <class 'pathlib.Path'>
+# Sub Class Description:
+#     None
+# Examples:
+#     None
+deadline_10_2__worker_storage: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
+
+
 
 ```
 
@@ -241,4 +387,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-19 21:11:30 UTC**
+Last changed: **2025-12-23 12:26:14 UTC**
