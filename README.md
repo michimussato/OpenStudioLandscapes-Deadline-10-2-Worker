@@ -383,27 +383,18 @@ To follow up on the previous LinkedIn publications, visit:
 
 ### This Feature
 
-Clone this repository into `OpenStudioLandscapes/.features`:
+Clone this repository into `OpenStudioLandscapes/.features` (assuming the current working directory to be the Git repository root `./OpenStudioLandscapes`):
 
 ```shell
-# cd .features
-git clone https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2-Worker.git
+git -C ./.features clone https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2-Worker.git
 ```
 
-Create `venv`:
+Install into OpenStudioLandscapes `venv` (`./OpenStudioLandscapes/.venv`):
 
 ```shell
-# cd .features/OpenStudioLandscapes-Deadline-10-2-Worker
-python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip setuptools
-```
-
-Configure `venv`:
-
-```shell
-# cd .features/OpenStudioLandscapes-Deadline-10-2-Worker
-pip install -e "../../[dev]"
+pip install -e "./.features/OpenStudioLandscapes-Deadline-10-2-Worker[dev]"
 pip install -e ".[dev]"
 ```
 
@@ -470,4 +461,4 @@ Currently, the following Python interpreters are enabled for testing:
 
 ***
 
-Last changed: **2025-12-23 13:37:18 UTC**
+Last changed: **2025-12-23 22:08:04 UTC**
