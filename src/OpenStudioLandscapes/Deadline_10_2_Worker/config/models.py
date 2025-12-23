@@ -12,13 +12,14 @@ from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
 
 from OpenStudioLandscapes.Deadline_10_2_Worker import dist
 
-config_default = pathlib.Path(__file__).parent.joinpath("config_default.yml")
-
 
 class Config(FeatureBaseModel):
     feature_name: str = dist.name
 
-    enabled: bool = False
+    enabled: bool = Field(
+        default=False,
+        description="# Not enabled by default because this Feature has some basic requirements, such as the installers."
+    )
 
     compose_scope: str = "worker"
 
