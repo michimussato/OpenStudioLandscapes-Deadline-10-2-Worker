@@ -22,7 +22,6 @@ dependencies = [
     "docker-compose-graph @ git+https://github.com/michimussato/docker-compose-graph.git",
     "email-validator",
     "gitpython",
-    "importlib-metadata; python_version<\"3.8\"",
     "snakemd",
 ]
 description = "Deadline 10.2 Worker Feature for OpenStudioLandscapes (dep: OpenStudioLandscapes-Deadline-10-2)"
