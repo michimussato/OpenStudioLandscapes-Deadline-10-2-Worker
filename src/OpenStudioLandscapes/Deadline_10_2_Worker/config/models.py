@@ -8,10 +8,10 @@ from pydantic import (
 
 LOGGER = get_dagster_logger(__name__)
 
-from OpenStudioLandscapes.engine.config.str_gen import get_config_str
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
+from OpenStudioLandscapes.engine.config.str_gen import get_config_str
 
-from OpenStudioLandscapes.Deadline_10_2_Worker import dist, constants
+from OpenStudioLandscapes.Deadline_10_2_Worker import constants, dist
 
 
 class Config(FeatureBaseModel):
@@ -23,7 +23,7 @@ class Config(FeatureBaseModel):
 
     enabled: bool = Field(
         default=False,
-        description="# Not enabled by default because this Feature has some basic requirements, such as the installers."
+        description="# Not enabled by default because this Feature has some basic requirements, such as the installers.",
     )
 
     compose_scope: str = "worker"
@@ -64,4 +64,3 @@ class Config(FeatureBaseModel):
 CONFIG_STR = get_config_str(
     Config=Config,
 )
-

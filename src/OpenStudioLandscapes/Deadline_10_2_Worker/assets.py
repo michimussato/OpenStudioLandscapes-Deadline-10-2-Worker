@@ -411,7 +411,9 @@ def compose_pulse_runner(
     docker_dict = {"services": {}}
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
-        service_name = f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
+        service_name = (
+            f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
+        )
         container_name, _ = get_docker_compose_names(
             context=context,
             service_name=service_name,
@@ -550,7 +552,9 @@ def compose_worker_runner(
     docker_dict = {"services": {}}
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
-        service_name = f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
+        service_name = (
+            f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
+        )
         container_name, _ = get_docker_compose_names(
             context=context,
             service_name=service_name,
