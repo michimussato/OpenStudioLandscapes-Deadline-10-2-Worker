@@ -240,8 +240,8 @@ def deadline_ini(
         "CONFIG_PARENT": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
         ),
-        "deadline_command_build_docker_image_client": AssetIn(
-            AssetKey([*ASSET_HEADER_FEATURE_IN["key_prefix"], "deadline_command_build_docker_image_client"]),
+        "build_docker_image_client": AssetIn(
+            AssetKey([*ASSET_HEADER_FEATURE_IN["key_prefix"], "build_docker_image_client"]),
         ),
         "deadline_ini_10_2": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "deadline_ini"]),
@@ -260,7 +260,7 @@ def compose_pulse_runner(
     context: AssetExecutionContext,
     CONFIG: Config,
     CONFIG_PARENT: ConfigParent,
-    deadline_command_build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
+    build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
     deadline_ini_10_2: pathlib.Path,  # pylint: disable=redefined-outer-name
     deadline_command_compose_pulse_runner_10_2: List,  # pylint: disable=redefined-outer-name
     compose_networks_10_2: Dict,  # pylint: disable=redefined-outer-name
@@ -343,9 +343,9 @@ def compose_pulse_runner(
             # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             # % (build["image_name"], build["image_tags"][0]),
             "image": "%s%s:%s" % (
-                 deadline_command_build_docker_image_client["image_prefixes"],
-                 deadline_command_build_docker_image_client["image_name"],
-                 deadline_command_build_docker_image_client["image_tags"][0]
+                 build_docker_image_client["image_prefixes"],
+                 build_docker_image_client["image_name"],
+                 build_docker_image_client["image_tags"][0],
              ),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
@@ -384,8 +384,8 @@ def compose_pulse_runner(
         "CONFIG_PARENT": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
         ),
-        "deadline_command_build_docker_image_client": AssetIn(
-            AssetKey([*ASSET_HEADER_FEATURE_IN["key_prefix"], "deadline_command_build_docker_image_client"]),
+        "build_docker_image_client": AssetIn(
+            AssetKey([*ASSET_HEADER_FEATURE_IN["key_prefix"], "build_docker_image_client"]),
         ),
         "deadline_ini_10_2": AssetIn(
             AssetKey([*ASSET_HEADER["key_prefix"], "deadline_ini"]),
@@ -404,7 +404,7 @@ def compose_worker_runner(
     context: AssetExecutionContext,
     CONFIG: Config,  # pylint: disable=redefined-outer-name
     CONFIG_PARENT: ConfigParent,  # pylint: disable=redefined-outer-name
-    deadline_command_build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
+    build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
     deadline_ini_10_2: pathlib.Path,  # pylint: disable=redefined-outer-name
     deadline_command_compose_worker_runner_10_2: List,  # pylint: disable=redefined-outer-name
     compose_networks_10_2: Dict,  # pylint: disable=redefined-outer-name
@@ -487,9 +487,9 @@ def compose_worker_runner(
             # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             # % (build["image_name"], build["image_tags"][0]),
             "image": "%s%s:%s" % (
-                deadline_command_build_docker_image_client["image_prefixes"],
-                deadline_command_build_docker_image_client["image_name"],
-                deadline_command_build_docker_image_client["image_tags"][0]
+                build_docker_image_client["image_prefixes"],
+                build_docker_image_client["image_name"],
+                build_docker_image_client["image_tags"][0],
             ),
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
