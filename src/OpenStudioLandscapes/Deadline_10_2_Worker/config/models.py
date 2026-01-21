@@ -4,7 +4,10 @@ from typing import List
 from dagster import get_dagster_logger
 from pydantic import (
     Field,
+    field_validator,
+    PositiveInt,
 )
+from pydantic_core import PydanticCustomError
 
 LOGGER = get_dagster_logger(__name__)
 
@@ -28,11 +31,11 @@ class Config(FeatureBaseModel):
 
     compose_scope: str = "worker"
 
-    deadline_10_2_worker_PADDING: int = Field(
+    deadline_10_2_worker_PADDING: PositiveInt = Field(
         default=3,
     )
 
-    deadline_10_2_worker_NUM_SERVICES: int = Field(
+    deadline_10_2_worker_NUM_SERVICES: PositiveInt = Field(
         default=1,
         description="Number of workers to simulate in parallel.",
     )
@@ -40,6 +43,17 @@ class Config(FeatureBaseModel):
     deadline_10_2__worker_storage: pathlib.Path = Field(
         default=pathlib.Path("{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage"),
     )
+
+    @field_validator('deadline_10_2_worker_NUM_SERVICES', mode='before')
+    @classmethod
+    def validate_deadline_10_2_worker_NUM_SERVICES(cls, v: int) -> int:
+        if v < 1:
+            raise PydanticCustomError(
+                'OneOrMoreError',
+                '{number} must be 1 or more!',
+                {'number': v},
+            )
+        return v
 
     # EXPANDABLE PATHS
     @property

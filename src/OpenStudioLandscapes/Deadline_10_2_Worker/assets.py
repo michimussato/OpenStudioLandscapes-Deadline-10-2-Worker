@@ -1,7 +1,6 @@
 import copy
 import enum
 import pathlib
-import shlex
 import shutil
 import textwrap
 import urllib.parse
@@ -35,11 +34,9 @@ from OpenStudioLandscapes.engine.common_assets.group_in import (
     get_feature_in_parent,
 )
 from OpenStudioLandscapes.engine.common_assets.group_out import get_group_out
-from OpenStudioLandscapes.engine.config.models import ConfigEngine, DockerConfigModel
+from OpenStudioLandscapes.engine.config.models import ConfigEngine
 from OpenStudioLandscapes.engine.constants import ASSET_HEADER_BASE
 from OpenStudioLandscapes.engine.enums import *
-from OpenStudioLandscapes.engine.link.models import OpenStudioLandscapesFeatureIn
-from OpenStudioLandscapes.engine.policies.retry import build_docker_image_retry_policy
 from OpenStudioLandscapes.engine.utils import *
 from OpenStudioLandscapes.engine.utils.docker.compose_dicts import *
 
@@ -274,9 +271,18 @@ def compose_pulse_runner(
     docker_dict = {"services": {}}
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
-        service_name = (
-            f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
-        )
+
+        if CONFIG.validate_deadline_10_2_worker_NUM_SERVICES == 1:
+            # Ignore incrementation
+            service_name = (
+                f"{service_name_base}"
+            )
+
+        else:
+            service_name = (
+                f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
+            )
+
         container_name, _ = get_docker_compose_names(
             context=context,
             service_name=service_name,
@@ -418,9 +424,18 @@ def compose_worker_runner(
     docker_dict = {"services": {}}
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
-        service_name = (
-            f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
-        )
+
+        if CONFIG.deadline_10_2_worker_NUM_SERVICES == 1:
+            # Ignore incrementation
+            service_name = (
+                f"{service_name_base}"
+            )
+
+        else:
+            service_name = (
+                f"{service_name_base}-{str(i+1).zfill(CONFIG.deadline_10_2_worker_PADDING)}"
+            )
+
         container_name, _ = get_docker_compose_names(
             context=context,
             service_name=service_name,
@@ -697,15 +712,22 @@ def cmd_append(
     # - deadline-10-2-worker-001...nnn
     # - deadline-10-2-pulse-worker-001...nnn
     # into
-    # - $(hostname)-deadline-10-2-worker-001...nnn
-    # - $(hostname)-deadline-10-2-pulse-worker-001...nnn
+    # - ${HOSTNAME}-deadline-10-2-worker-001...nnn
+    # - ${HOSTNAME}-deadline-10-2-pulse-worker-001...nnn
+    #
+    # We do this because this worker might be running on
+    # a machine which hostname we don't know at build time
+    # so the machine name needs to be extracted and forwarded
+    # to the Docker container.
+    # Note: $HOSTNAME is not defined (at least on some OSs)
+    # so we have to set it in the "up"-scripts
     for service_name in compose_services:
 
         target_worker = (
-            "$($(which docker) inspect -f '{{ .State.Pid }}' %s)"
+            "\"$($(which docker) inspect -f '{{ .State.Pid }}' %s)\""
             % ".".join([service_name, env.get("LANDSCAPE", "default")])
         )
-        hostname_worker = f"$(hostname)-{service_name}"
+        hostname_worker = f"${{HOSTNAME}}-{service_name}"
 
         exclude_from_quote.extend(
             [
