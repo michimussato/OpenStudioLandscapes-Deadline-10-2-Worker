@@ -55,7 +55,7 @@ lint = [
     "pylint",
 ]
 optional-base = [
-    "OpenStudioLandscapes-Deadline-10-2 @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git",
+    "OpenStudioLandscapes-Deadline-10-2[optional-base] @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git",
 ]
 pyproject = [
     "OpenStudioLandscapesUtil-VersionBumper @ git+https://github.com/michimussato/OpenStudioLandscapesUtil-VersionBumper.git",
