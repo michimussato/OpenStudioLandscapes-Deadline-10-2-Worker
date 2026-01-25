@@ -897,19 +897,6 @@
         "message-id": "C0116"
     },
     {
-        "type": "error",
-        "module": "OpenStudioLandscapes.Deadline_10_2_Worker.config.models",
-        "obj": "Config.deadline_10_2__worker_storage_expanded",
-        "line": 66,
-        "column": 12,
-        "endLine": 66,
-        "endColumn": 57,
-        "path": "src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py",
-        "symbol": "no-member",
-        "message": "Instance of 'FieldInfo' has no 'expanduser' member",
-        "message-id": "E1101"
-    },
-    {
         "type": "convention",
         "module": "OpenStudioLandscapes.Deadline_10_2_Worker.doc.readme",
         "obj": "",
