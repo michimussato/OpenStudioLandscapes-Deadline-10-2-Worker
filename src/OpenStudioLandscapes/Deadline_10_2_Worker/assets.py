@@ -326,9 +326,12 @@ def compose_pulse_runner(
             )
 
         volumes_dict = {
-            "volumes": [
-                *_volume_relative,
-            ]
+            "volumes": list(
+                {
+                    *_volume_relative,
+                    *config_engine.global_bind_volumes,
+                }
+            )
         }
 
         service = {
@@ -348,6 +351,9 @@ def compose_pulse_runner(
                 build_docker_image_client["image_name"],
                 build_docker_image_client["image_tags"][0],
             ),
+            "environment": {
+                **config_engine.global_environment_variables,
+            },
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
             **copy.deepcopy(ports_dict),
@@ -476,9 +482,12 @@ def compose_worker_runner(
             )
 
         volumes_dict = {
-            "volumes": [
-                *_volume_relative,
-            ]
+            "volumes": list(
+                {
+                    *_volume_relative,
+                    *config_engine.global_bind_volumes,
+                }
+            )
         }
 
         deadline_command_compose_worker_runner_10_2.extend(["-name", str(service_name)])
@@ -500,6 +509,9 @@ def compose_worker_runner(
                 build_docker_image_client["image_name"],
                 build_docker_image_client["image_tags"][0],
             ),
+            "environment": {
+                **config_engine.global_environment_variables,
+            },
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
             **copy.deepcopy(volumes_dict),
