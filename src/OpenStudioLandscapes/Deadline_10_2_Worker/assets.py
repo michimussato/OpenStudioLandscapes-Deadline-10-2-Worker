@@ -330,6 +330,7 @@ def compose_pulse_runner(
                 {
                     *_volume_relative,
                     *config_engine.global_bind_volumes,
+                    *CONFIG.local_bind_volumes,
                 }
             )
         }
@@ -353,6 +354,7 @@ def compose_pulse_runner(
             ),
             "environment": {
                 **config_engine.global_environment_variables,
+                **CONFIG.local_environment_variables,
             },
             **copy.deepcopy(network_dict),
             **copy.deepcopy(volumes_dict),
@@ -486,6 +488,7 @@ def compose_worker_runner(
                 {
                     *_volume_relative,
                     *config_engine.global_bind_volumes,
+                    *CONFIG.local_bind_volumes,
                 }
             )
         }
@@ -511,6 +514,7 @@ def compose_worker_runner(
             ),
             "environment": {
                 **config_engine.global_environment_variables,
+                **CONFIG.local_environment_variables,
             },
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
