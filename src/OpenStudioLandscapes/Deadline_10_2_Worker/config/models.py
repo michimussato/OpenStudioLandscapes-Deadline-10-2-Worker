@@ -63,7 +63,7 @@ class Config(FeatureBaseModel):
             raise KeyError("`env` is `None`.")
         LOGGER.debug(f"Expanding {self.deadline_10_2__worker_storage}...")
         ret = pathlib.Path(
-            self.deadline_10_2__worker_storage.expanduser()
+            self.deadline_10_2__worker_storage.expanduser()  # pylint: disable=E1101
             .as_posix()
             .format(
                 **{
