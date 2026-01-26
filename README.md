@@ -67,7 +67,7 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 ### Default Configuration
 
 
-<details>
+<details open>
 <summary><code>config.yml</code></summary>
 
 
@@ -441,4 +441,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-01-25 23:30:27 UTC**
+Last changed: **2026-01-26 11:38:24 UTC**
