@@ -64,15 +64,14 @@ src/OpenStudioLandscapes/Deadline_10_2_Worker/__init__.py:6:5: W0511: TODO: Impo
 src/OpenStudioLandscapes/Deadline_10_2_Worker/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/__init__.py:1:0: C0103: Module name "Deadline_10_2_Worker" doesn't conform to snake_case naming style (invalid-name)
 ************* Module OpenStudioLandscapes.Deadline_10_2_Worker.config.models
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:29:0: C0301: Line too long (121/100) (line-too-long)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:28:0: C0301: Line too long (121/100) (line-too-long)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:14:0: C0413: Import "from OpenStudioLandscapes.engine.config.models import FeatureBaseModel" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:15:0: C0413: Import "from OpenStudioLandscapes.engine.config.str_gen import get_config_str" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:17:0: C0413: Import "from OpenStudioLandscapes.Deadline_10_2_Worker import constants, dist" should be placed at the top of the module (wrong-import-position)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:20:0: C0115: Missing class docstring (missing-class-docstring)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:49:4: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:49:4: C0103: Method name "validate_deadline_10_2_worker_NUM_SERVICES" doesn't conform to snake_case naming style (invalid-name)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:60:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:16:0: C0413: Import "from OpenStudioLandscapes.Deadline_10_2_Worker import constants, dist" should be placed at the top of the module (wrong-import-position)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:19:0: C0115: Missing class docstring (missing-class-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:48:4: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:48:4: C0103: Method name "validate_deadline_10_2_worker_NUM_SERVICES" doesn't conform to snake_case naming style (invalid-name)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:59:4: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module OpenStudioLandscapes.Deadline_10_2_Worker.doc.readme
 src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:26:0: C0301: Line too long (119/100) (line-too-long)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:35:0: C0301: Line too long (112/100) (line-too-long)
@@ -81,5 +80,5 @@ src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:7:0: C0116: Missing 
 src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:35:4: W0106: Expression "f"deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}"" is assigned to nothing (expression-not-assigned)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.51/10 (previous run: 6.21/10, +0.30)
+Your code has been rated at 6.54/10 (previous run: 6.19/10, +0.35)
 
