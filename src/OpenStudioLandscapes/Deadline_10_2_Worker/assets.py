@@ -353,7 +353,7 @@ def compose_pulse_runner(
                 build_docker_image_client["image_tags"][0],
             ),
             "environment": {
-                "TZ": CONFIG.tz,
+                "TZ": config_engine.tz,
                 **config_engine.global_environment_variables,
                 **CONFIG.local_environment_variables,
             },
@@ -514,7 +514,7 @@ def compose_worker_runner(
                 build_docker_image_client["image_tags"][0],
             ),
             "environment": {
-                "TZ": CONFIG.tz,
+                "TZ": config_engine.tz,
                 **config_engine.global_environment_variables,
                 **CONFIG.local_environment_variables,
             },
