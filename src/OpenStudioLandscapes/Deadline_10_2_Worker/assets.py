@@ -272,7 +272,7 @@ def compose_pulse_runner(
 
     for i in range(CONFIG.deadline_10_2_worker_NUM_SERVICES):
 
-        if CONFIG.validate_deadline_10_2_worker_NUM_SERVICES == 1:
+        if CONFIG.deadline_10_2_worker_NUM_SERVICES == 1:
             # Ignore incrementation
             service_name = f"{service_name_base}"
 
@@ -737,9 +737,11 @@ def cmd_append(
     # so we have to set it in the "up"-scripts
     for service_name in compose_services:
 
+        container_name = ".".join([service_name, env.get("LANDSCAPE", "default")])
+
         target_worker = (
-            "\"$($(which docker) inspect -f '{{ .State.Pid }}' %s)\""
-            % ".".join([service_name, env.get("LANDSCAPE", "default")])
+            "\"$($(which docker) inspect --format '{{ .State.Pid }}' %s)\""
+            % container_name
         )
         hostname_worker = f"${{HOSTNAME}}-{service_name}"
 
@@ -774,6 +776,9 @@ def cmd_append(
             [
                 "&&",
                 *cmd_docker_compose_set_dynamic_hostname_worker,
+                "||",
+                "echo",
+                f"could not set hostname for {container_name}",
             ]
         )
 
@@ -783,6 +788,7 @@ def cmd_append(
             "$(which docker)",
             "&&",
             ";",
+            "||",
             *exclude_from_quote,
         ]
     )
