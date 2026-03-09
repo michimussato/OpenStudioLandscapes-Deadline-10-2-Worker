@@ -487,10 +487,7 @@ def compose_worker_runner(
                     *_volume_relative,
                     *config_engine.global_bind_volumes,
                     *CONFIG.local_bind_volumes,
-                    *[f"{i[0].expanduser().as_posix()}:{i[1].expanduser().as_posix()}" for i in zip(
-                        config_engine.openstudiolandscapes__rez_config.REZ_PACKAGES_PATH,
-                        config_engine.openstudiolandscapes__rez_config.REZ_PACKAGES_PATH_CONTAINER,
-                    )],
+                    *config_engine.openstudiolandscapes__rez_config.REZ_PACKAGES_PATH_VOL,
                 }
             )
         }
@@ -518,7 +515,7 @@ def compose_worker_runner(
                 "TZ": config_engine.tz,
                 **config_engine.global_environment_variables,
                 **CONFIG.local_environment_variables,
-                "REZ_PACKAGES_PATH": ":".join(i.expanduser().as_posix() for i in config_engine.openstudiolandscapes__rez_config.REZ_PACKAGES_PATH_CONTAINER),
+                **config_engine.openstudiolandscapes__rez_config.REZ_ENVIRONMENT,
             },
             **copy.deepcopy(network_dict),
             **copy.deepcopy(ports_dict),
