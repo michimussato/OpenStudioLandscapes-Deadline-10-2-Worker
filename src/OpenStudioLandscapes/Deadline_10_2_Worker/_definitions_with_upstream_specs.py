@@ -9,7 +9,6 @@ from OpenStudioLandscapes.engine.base.assets import group_out_base
 
 from OpenStudioLandscapes.Deadline_10_2_Worker.definitions import assets_base
 
-
 assets_external = []
 assets_external.extend(group_out_base.specs)
 assets_external.extend(deadline_command_compose_worker_runner.specs)
