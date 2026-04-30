@@ -21,6 +21,7 @@ dependencies = [
     "docker-compose-graph @ git+https://github.com/michimussato/docker-compose-graph.git",
     "email-validator",
     "gitpython",
+    "ruamel.yaml",
     "snakemd",
 ]
 description = "Deadline 10.2 Worker Feature for OpenStudioLandscapes (dep: OpenStudioLandscapes-Deadline-10-2)"
