@@ -2,13 +2,12 @@ import pathlib
 from typing import List
 
 from OpenStudioLandscapes.engine.config.models import FeatureBaseModel
-from OpenStudioLandscapes.engine.logging.loggers import FEATURE_LOGGER as LOGGER
 from pydantic import (
     Field,
     PositiveInt,
 )
 
-from OpenStudioLandscapes.Deadline_10_2_Worker import constants, dist
+from OpenStudioLandscapes.Deadline_10_2_Worker import constants, dist, LOGGER
 
 
 class Config(FeatureBaseModel):
