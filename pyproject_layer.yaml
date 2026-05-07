@@ -2,19 +2,12 @@ project:
   description: 'Deadline 10.2 Worker Feature for OpenStudioLandscapes (dep: OpenStudioLandscapes-Deadline-10-2)'
   name: OpenStudioLandscapes-Deadline-10-2-Worker
   optional-dependencies:
-    optional-base:
-    - OpenStudioLandscapes-Deadline-10-2[optional-base] @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git
     dev:
     - OpenStudioLandscapes-Deadline-10-2-Worker[lint]
     - OpenStudioLandscapes-Deadline-10-2-Worker[sbom]
     - OpenStudioLandscapes-Deadline-10-2-Worker[readme]
-    lint:
-    - OpenStudioLandscapes-Deadline-10-2-Worker[optional-base]
-    readme:
-    - OpenStudioLandscapes-Deadline-10-2-Worker[optional-base]
     sbom:
     - OpenStudioLandscapes-Deadline-10-2-Worker[graphviz]
-    - OpenStudioLandscapes-Deadline-10-2-Worker[optional-base]
   urls:
     Homepage: https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2-Worker
 tool:
