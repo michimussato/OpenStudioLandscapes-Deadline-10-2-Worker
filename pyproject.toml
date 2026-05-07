@@ -50,25 +50,19 @@ graphviz = [
     "pipdeptree",
 ]
 lint = [
-    "OpenStudioLandscapes-Deadline-10-2-Worker[optional-base]",
     "black",
     "isort",
     "pre-commit",
     "pylint",
 ]
-optional-base = [
-    "OpenStudioLandscapes-Deadline-10-2[optional-base] @ git+https://github.com/michimussato/OpenStudioLandscapes-Deadline-10-2.git",
-]
 pyproject = [
     "OpenStudioLandscapesUtil-VersionBumper @ git+https://github.com/michimussato/OpenStudioLandscapesUtil-VersionBumper.git",
 ]
 readme = [
-    "OpenStudioLandscapes-Deadline-10-2-Worker[optional-base]",
     "OpenStudioLandscapesUtil-ReadmeGenerator @ git+https://github.com/michimussato/OpenStudioLandscapesUtil-ReadmeGenerator.git",
 ]
 sbom = [
     "OpenStudioLandscapes-Deadline-10-2-Worker[graphviz]",
-    "OpenStudioLandscapes-Deadline-10-2-Worker[optional-base]",
     "cyclonedx-bom",
 ]
 testing = [
