@@ -4,7 +4,10 @@ from dagster import (
 )
 
 import OpenStudioLandscapes.Deadline_10_2_Worker.assets
-from OpenStudioLandscapes.Deadline_10_2_Worker import *
+from OpenStudioLandscapes.Deadline_10_2_Worker import (
+    dist,
+    LOGGER,
+)
 
 LOGGER.info(f"Loading {dist.name} assets...")
 
