@@ -20,7 +20,7 @@ from dagster import (
 
 # Override default ConfigParent
 from OpenStudioLandscapes.Deadline_10_2.config.models import Config as ConfigParent
-from OpenStudioLandscapes.Deadline_10_2.constants import (
+from OpenStudioLandscapes.Deadline_10_2 import (
     ASSET_HEADER as ASSET_HEADER_FEATURE_IN,
 )
 from OpenStudioLandscapes.engine.common_assets import (
@@ -47,8 +47,8 @@ from OpenStudioLandscapes.engine.utils.docker.compose_dicts import (
 
 from OpenStudioLandscapes.Deadline_10_2_Worker import (
     config,
-    constants,
     dist,
+    ASSET_HEADER,
 )
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
@@ -58,37 +58,37 @@ yaml.SafeDumper.add_multi_representer(
 )
 
 cmd: AssetsDefinition = cmd.get_feature__cmd(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 CONFIG: AssetsDefinition = feature.get_feature__CONFIG(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
     CONFIG_STR=config.models.CONFIG_STR,
     search_model_of_type=config.models.Config,
 )
 
 feature_in: AssetsDefinition = group_in.get_feature_in(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
     ASSET_HEADER_BASE=ASSET_HEADER_BASE,
     ASSET_HEADER_FEATURE_IN=ASSET_HEADER_FEATURE_IN,
 )
 
 group_out: AssetsDefinition = group_out.get_group_out(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
 docker_compose_graph: AssetsDefinition = docker_compose_graph.get_docker_compose_graph(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
 compose: AssetsDefinition = compose.get_compose(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 feature_out_v2: AssetsDefinition = feature_out.get_feature_out_v2(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
 )
 
 
@@ -97,7 +97,7 @@ feature_out_v2: AssetsDefinition = feature_out.get_feature_out_v2(
 # - CONFIG_PARENT
 # if ConfigParent is or type FeatureBaseModel
 feature_in_parent: Union[AssetsDefinition, None] = group_in.get_feature_in_parent(
-    ASSET_HEADER=constants.ASSET_HEADER,
+    ASSET_HEADER=ASSET_HEADER,
     config_parent=ConfigParent,
 )
 
@@ -114,13 +114,13 @@ feature_in_parent: Union[AssetsDefinition, None] = group_in.get_feature_in_paren
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
         "CONFIG_PARENT": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
         ),
     },
 )
@@ -229,13 +229,13 @@ def deadline_ini(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
         "CONFIG_PARENT": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
         ),
         "build_docker_image_client": AssetIn(
             AssetKey(
@@ -243,18 +243,18 @@ def deadline_ini(
             ),
         ),
         "deadline_ini_10_2": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "deadline_ini"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "deadline_ini"]),
         ),
         "deadline_command_compose_pulse_runner_10_2": AssetIn(
             AssetKey(
                 [
-                    *constants.ASSET_HEADER["key_prefix"],
+                    *ASSET_HEADER["key_prefix"],
                     "deadline_command_compose_pulse_runner",
                 ]
             ),
         ),
         "compose_networks_10_2": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "compose_networks"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_networks"]),
         ),
     },
 )
@@ -393,13 +393,13 @@ def compose_pulse_runner(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
         "CONFIG_PARENT": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG_PARENT"]),
         ),
         "build_docker_image_client": AssetIn(
             AssetKey(
@@ -407,18 +407,18 @@ def compose_pulse_runner(
             ),
         ),
         "deadline_ini_10_2": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "deadline_ini"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "deadline_ini"]),
         ),
         "deadline_command_compose_worker_runner_10_2": AssetIn(
             AssetKey(
                 [
-                    *constants.ASSET_HEADER["key_prefix"],
+                    *ASSET_HEADER["key_prefix"],
                     "deadline_command_compose_worker_runner",
                 ]
             ),
         ),
         "compose_networks_10_2": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "compose_networks"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_networks"]),
         ),
     },
 )
@@ -552,10 +552,10 @@ def compose_worker_runner(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "CONFIG": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "CONFIG"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "CONFIG"]),
         ),
     },
 )
@@ -590,13 +590,13 @@ def compose_networks(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "compose_worker_runner": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "compose_worker_runner"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_worker_runner"]),
         ),
         "compose_pulse_runner": AssetIn(
-            AssetKey([*constants.ASSET_HEADER["key_prefix"], "compose_pulse_runner"]),
+            AssetKey([*ASSET_HEADER["key_prefix"], "compose_pulse_runner"]),
         ),
     },
 )
@@ -618,7 +618,7 @@ def compose_maps(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "deadline_command_compose_worker_runner": AssetIn(
             AssetKey(
@@ -648,7 +648,7 @@ def deadline_command_compose_worker_runner(
 
 
 @asset(
-    **constants.ASSET_HEADER,
+    **ASSET_HEADER,
     ins={
         "deadline_command_compose_pulse_runner": AssetIn(
             AssetKey(
