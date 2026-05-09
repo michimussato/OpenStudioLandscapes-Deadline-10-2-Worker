@@ -17,12 +17,10 @@ from dagster import (
     Output,
     asset,
 )
+from OpenStudioLandscapes.Deadline_10_2 import ASSET_HEADER as ASSET_HEADER_FEATURE_IN
 
 # Override default ConfigParent
 from OpenStudioLandscapes.Deadline_10_2.config.models import Config as ConfigParent
-from OpenStudioLandscapes.Deadline_10_2 import (
-    ASSET_HEADER as ASSET_HEADER_FEATURE_IN,
-)
 from OpenStudioLandscapes.engine.common_assets import (
     cmd,
     compose,
@@ -46,9 +44,9 @@ from OpenStudioLandscapes.engine.utils.docker.compose_dicts import (
 )
 
 from OpenStudioLandscapes.Deadline_10_2_Worker import (
+    ASSET_HEADER,
     config,
     dist,
-    ASSET_HEADER,
 )
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
