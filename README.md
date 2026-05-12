@@ -83,73 +83,70 @@ The following settings are available in `OpenStudioLandscapes-Deadline-10-2-Work
 
 
 ```yaml
-properties:
-  compose_scope:
-    default: worker
-    title: Compose Scope
+compose_scope:
+  default: worker
+  title: Compose Scope
+  type: string
+deadline_10_2__worker_storage:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
+  format: path
+  title: Deadline 10 2  Worker Storage
+  type: string
+deadline_10_2_worker_NUM_SERVICES:
+  default: 1
+  description: Number of workers to simulate in parallel.
+  exclusiveMinimum: 0
+  title: Deadline 10 2 Worker Num Services
+  type: integer
+deadline_10_2_worker_PADDING:
+  default: 3
+  exclusiveMinimum: 0
+  title: Deadline 10 2 Worker Padding
+  type: integer
+docker_compose:
+  default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml'
+  description: The path to the `docker-compose.yml` file.
+  format: path
+  title: Docker Compose
+  type: string
+enabled:
+  default: false
+  description: '# Not enabled by default because this Feature has some basic requirements,
+    such as the installers.'
+  title: Enabled
+  type: boolean
+env:
+  additionalProperties: true
+  title: Env
+  type: object
+feature_name:
+  default: OpenStudioLandscapes-Deadline-10-2-Worker
+  title: Feature Name
+  type: string
+group_name:
+  default: OpenStudioLandscapes_Deadline_10_2_Worker
+  title: Group Name
+  type: string
+key_prefixes:
+  default:
+  - OpenStudioLandscapes_Deadline_10_2_Worker
+  items:
     type: string
-  deadline_10_2__worker_storage:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/storage'
-    format: path
-    title: Deadline 10 2  Worker Storage
+  title: Key Prefixes
+  type: array
+local_bind_volumes:
+  description: Here you can define Feature specific, arbitrary, absolute bind volume
+    mappings.
+  items:
     type: string
-  deadline_10_2_worker_NUM_SERVICES:
-    default: 1
-    description: Number of workers to simulate in parallel.
-    exclusiveMinimum: 0
-    title: Deadline 10 2 Worker Num Services
-    type: integer
-  deadline_10_2_worker_PADDING:
-    default: 3
-    exclusiveMinimum: 0
-    title: Deadline 10 2 Worker Padding
-    type: integer
-  docker_compose:
-    default: '{DOT_LANDSCAPES}/{LANDSCAPE}/{FEATURE}/docker_compose/docker-compose.yml'
-    description: The path to the `docker-compose.yml` file.
-    format: path
-    title: Docker Compose
+  title: Local Bind Volumes
+  type: array
+local_environment_variables:
+  additionalProperties:
     type: string
-  enabled:
-    default: false
-    description: '# Not enabled by default because this Feature has some basic requirements,
-      such as the installers.'
-    title: Enabled
-    type: boolean
-  env:
-    additionalProperties: true
-    title: Env
-    type: object
-  feature_name:
-    default: OpenStudioLandscapes-Deadline-10-2-Worker
-    title: Feature Name
-    type: string
-  group_name:
-    default: OpenStudioLandscapes_Deadline_10_2_Worker
-    title: Group Name
-    type: string
-  key_prefixes:
-    default:
-    - OpenStudioLandscapes_Deadline_10_2_Worker
-    items:
-      type: string
-    title: Key Prefixes
-    type: array
-  local_bind_volumes:
-    description: Here you can define Feature specific, arbitrary, absolute bind volume
-      mappings.
-    items:
-      type: string
-    title: Local Bind Volumes
-    type: array
-  local_environment_variables:
-    additionalProperties:
-      type: string
-    description: Here you can define Feature specific, arbitrary environment variables.
-    title: Local Environment Variables
-    type: object
-title: Config
-type: object
+  description: Here you can define Feature specific, arbitrary environment variables.
+  title: Local Environment Variables
+  type: object
 
 ```
 
@@ -246,4 +243,4 @@ To follow up on the previous LinkedIn publications, visit:
 
 ***
 
-Last changed: **2026-05-09 11:27:23 UTC**
+Last changed: **2026-05-12 10:03:49 UTC**
