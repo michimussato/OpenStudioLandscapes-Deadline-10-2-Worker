@@ -30,7 +30,7 @@ from OpenStudioLandscapes.engine.common_assets import (
     group_in,
     group_out,
 )
-from OpenStudioLandscapes.engine.config.models import ConfigEngine
+from OpenStudioLandscapes.engine.env.configurable_resources.config_engine import ConfigEngineConfigurableResource
 from OpenStudioLandscapes.engine.base.configurable_resources.rez_resource import RezConfigurableResource
 from OpenStudioLandscapes.engine.constants import ASSET_HEADER_BASE
 from OpenStudioLandscapes.engine.enums import (
@@ -125,14 +125,13 @@ feature_in_parent: Union[AssetsDefinition, None] = group_in.get_feature_in_paren
 )
 def deadline_ini(
     context: AssetExecutionContext,
+    config_ConfigEngineConfigurableResource: ConfigEngineConfigurableResource,
     CONFIG: config.models.Config,
     CONFIG_PARENT: ConfigParent,
     # Todo:
 ) -> Generator[Output[pathlib.Path] | AssetMaterialization, None, None]:
 
     env: Dict = CONFIG.env
-
-    config_engine: ConfigEngine = CONFIG.config_engine
 
     # @formatter:off
     deadline_ini = textwrap.dedent("""\
@@ -194,7 +193,7 @@ def deadline_ini(
             safe=":/%",
         ),
         rcs_runner_hostname=".".join(
-            ["deadline-rcs-runner-10-2", config_engine.openstudiolandscapes__domain_lan]
+            ["deadline-rcs-runner-10-2", config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan]
         ),
         RCS_HTTP_PORT_HOST=CONFIG_PARENT.deadline_10_2_RCS_HTTP_PORT_HOST,
         WEBSERVICE_HTTP_PORT_HOST=CONFIG_PARENT.deadline_10_2_WEBSERVICE_HTTP_PORT_HOST,
@@ -259,6 +258,7 @@ def deadline_ini(
 )
 def compose_pulse_runner(
     context: AssetExecutionContext,
+    config_ConfigEngineConfigurableResource: ConfigEngineConfigurableResource,
     CONFIG: config.models.Config,
     CONFIG_PARENT: ConfigParent,
     build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
@@ -269,8 +269,6 @@ def compose_pulse_runner(
     """ """
 
     env: Dict = CONFIG.env
-
-    config_engine: ConfigEngine = CONFIG.config_engine
 
     service_name_base = "deadline-10-2-pulse-worker"
 
@@ -289,7 +287,7 @@ def compose_pulse_runner(
             context=context,
             service_name=service_name,
             landscape_id=env.get("LANDSCAPE", "default"),
-            domain_lan=config_engine.openstudiolandscapes__domain_lan,
+            domain_lan=config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
         )
         # container_name = "--".join([service_name, env.get("LANDSCAPE", "default")])
         # host_name = ".".join([env["HOSTNAME_PULSE_RUNNER"] or service_name, env["OPENSTUDIOLANDSCAPES__DOMAIN_LAN"]])
@@ -335,7 +333,7 @@ def compose_pulse_runner(
             "volumes": list(
                 {
                     *_volume_relative,
-                    *config_engine.global_bind_volumes,
+                    *config_ConfigEngineConfigurableResource.global_bind_volumes,
                     *CONFIG.local_bind_volumes,
                 }
             )
@@ -347,7 +345,7 @@ def compose_pulse_runner(
             # specify it.
             # https://forums.docker.com/t/docker-compose-set-container-name-and-hostname-dynamicaly/138259/2
             # "hostname": host_name,
-            "domainname": config_engine.openstudiolandscapes__domain_lan,
+            "domainname": config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
             # https://docs.docker.com/reference/compose-file/services/#restart
             "restart": f"{DockerComposePolicies.RESTART_POLICY.ON_FAILURE.value}:3",
             # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
@@ -359,8 +357,8 @@ def compose_pulse_runner(
                 build_docker_image_client["image_tags"][0],
             ),
             "environment": {
-                "TZ": config_engine.tz,
-                **config_engine.global_environment_variables,
+                "TZ": config_ConfigEngineConfigurableResource.tz,
+                **config_ConfigEngineConfigurableResource.global_environment_variables,
                 **CONFIG.local_environment_variables,
             },
             **copy.deepcopy(network_dict),
@@ -423,6 +421,7 @@ def compose_pulse_runner(
 )
 def compose_worker_runner(
     context: AssetExecutionContext,
+    config_ConfigEngineConfigurableResource: ConfigEngineConfigurableResource,
     config_RezConfigurableResource: RezConfigurableResource,
     CONFIG: config.models.Config,  # pylint: disable=redefined-outer-name
     CONFIG_PARENT: ConfigParent,  # pylint: disable=redefined-outer-name
@@ -434,8 +433,6 @@ def compose_worker_runner(
     """ """
 
     env: Dict = CONFIG.env
-
-    config_engine: ConfigEngine = CONFIG.config_engine
 
     service_name_base = "deadline-10-2-worker"
 
@@ -454,7 +451,7 @@ def compose_worker_runner(
             context=context,
             service_name=service_name,
             landscape_id=env.get("LANDSCAPE", "default"),
-            domain_lan=config_engine.openstudiolandscapes__domain_lan,
+            domain_lan=config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
         )
 
         network_dict = {}
@@ -498,7 +495,7 @@ def compose_worker_runner(
             "volumes": list(
                 {
                     *_volume_relative,
-                    *config_engine.global_bind_volumes,
+                    *config_ConfigEngineConfigurableResource.global_bind_volumes,
                     *CONFIG.local_bind_volumes,
                     *config_RezConfigurableResource.REZ_PACKAGES_PATH_VOL,
                 }
@@ -514,7 +511,7 @@ def compose_worker_runner(
             # https://forums.docker.com/t/docker-compose-set-container-name-and-hostname-dynamicaly/138259/2
             # https://shantanoo-desai.github.io/posts/technology/hostname-docker-container/
             # "hostname": host_name,
-            "domainname": config_engine.openstudiolandscapes__domain_lan,
+            "domainname": config_ConfigEngineConfigurableResource.openstudiolandscapes__domain_lan,
             "restart": DockerComposePolicies.RESTART_POLICY.ALWAYS.value,
             # "image": "${DOT_OVERRIDES_REGISTRY_NAMESPACE:-docker.io/openstudiolandscapes}/%s:%s"
             # % (build["image_name"], build["image_tags"][0]),
@@ -525,8 +522,8 @@ def compose_worker_runner(
                 build_docker_image_client["image_tags"][0],
             ),
             "environment": {
-                "TZ": config_engine.tz,
-                **config_engine.global_environment_variables,
+                "TZ": config_ConfigEngineConfigurableResource.tz,
+                **config_ConfigEngineConfigurableResource.global_environment_variables,
                 **CONFIG.local_environment_variables,
                 **config_RezConfigurableResource.REZ_ENVIRONMENT,
             },
