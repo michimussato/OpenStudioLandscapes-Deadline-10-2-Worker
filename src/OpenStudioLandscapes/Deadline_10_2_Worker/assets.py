@@ -17,7 +17,7 @@ from dagster import (
     Output,
     asset,
 )
-from OpenStudioLandscapes.Deadline_10_2 import ASSET_HEADER as ASSET_HEADER_FEATURE_IN
+from OpenStudioLandscapes.Deadline_10_2.constants import ASSET_HEADER as ASSET_HEADER_FEATURE_IN
 
 # Override default ConfigParent
 from OpenStudioLandscapes.Deadline_10_2.config.models import Config as ConfigParent
@@ -43,11 +43,11 @@ from OpenStudioLandscapes.engine.utils.docker.compose_dicts import (
     get_network_dicts,
 )
 
-from OpenStudioLandscapes.Deadline_10_2_Worker import (
+from OpenStudioLandscapes.Deadline_10_2_Worker.constants import (
     ASSET_HEADER,
-    config,
     dist,
 )
+from OpenStudioLandscapes.Deadline_10_2_Worker.config import models
 
 # https://github.com/yaml/pyyaml/issues/722#issuecomment-1969292770
 yaml.SafeDumper.add_multi_representer(
@@ -61,8 +61,8 @@ cmd: AssetsDefinition = cmd.get_feature__cmd(
 
 CONFIG: AssetsDefinition = feature.get_feature__CONFIG(
     ASSET_HEADER=ASSET_HEADER,
-    CONFIG_STR=config.models.CONFIG_STR,
-    search_model_of_type=config.models.Config,
+    CONFIG_STR=models.CONFIG_STR,
+    search_model_of_type=models.Config,
 )
 
 feature_in: AssetsDefinition = group_in.get_feature_in(
@@ -124,7 +124,7 @@ feature_in_parent: Union[AssetsDefinition, None] = group_in.get_feature_in_paren
 )
 def deadline_ini(
     context: AssetExecutionContext,
-    CONFIG: config.models.Config,
+    CONFIG: models.Config,
     CONFIG_PARENT: ConfigParent,
     # Todo:
 ) -> Generator[Output[pathlib.Path] | AssetMaterialization, None, None]:
@@ -258,7 +258,7 @@ def deadline_ini(
 )
 def compose_pulse_runner(
     context: AssetExecutionContext,
-    CONFIG: config.models.Config,
+    CONFIG: models.Config,
     CONFIG_PARENT: ConfigParent,
     build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
     deadline_ini_10_2: pathlib.Path,  # pylint: disable=redefined-outer-name
@@ -422,7 +422,7 @@ def compose_pulse_runner(
 )
 def compose_worker_runner(
     context: AssetExecutionContext,
-    CONFIG: config.models.Config,  # pylint: disable=redefined-outer-name
+    CONFIG: models.Config,  # pylint: disable=redefined-outer-name
     CONFIG_PARENT: ConfigParent,  # pylint: disable=redefined-outer-name
     build_docker_image_client: Dict,  # pylint: disable=redefined-outer-name
     deadline_ini_10_2: pathlib.Path,  # pylint: disable=redefined-outer-name
@@ -559,7 +559,7 @@ def compose_worker_runner(
 )
 def compose_networks(
     context: AssetExecutionContext,
-    CONFIG: config.models.Config,  # pylint: disable=redefined-outer-name
+    CONFIG: models.Config,  # pylint: disable=redefined-outer-name
 ) -> Generator[
     Output[Dict[str, Dict[str, Dict[str, str]]]] | AssetMaterialization, None, None
 ]:
