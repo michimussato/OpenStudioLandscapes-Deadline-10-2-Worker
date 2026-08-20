@@ -7,7 +7,7 @@ from pydantic import (
     PositiveInt,
 )
 
-from OpenStudioLandscapes.Deadline_10_2_Worker import (
+from OpenStudioLandscapes.Deadline_10_2_Worker.constants import (
     ASSET_HEADER,
     LOGGER,
     dist,
