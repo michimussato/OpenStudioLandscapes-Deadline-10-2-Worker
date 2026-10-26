@@ -1,3 +1,14 @@
+************* Module OpenStudioLandscapes.Deadline_10_2_Worker.definitions
+src/OpenStudioLandscapes/Deadline_10_2_Worker/definitions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/definitions.py:12:0: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+************* Module OpenStudioLandscapes.Deadline_10_2_Worker.constants
+src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py:14:5: W0511: TODO: Import directly (no need for conditional) when `python_requires = >= 3.8` (fixme)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py:38:4: C0103: Constant name "fill" doesn't conform to UPPER_CASE naming style (invalid-name)
+************* Module OpenStudioLandscapes.Deadline_10_2_Worker
+src/OpenStudioLandscapes/Deadline_10_2_Worker/__init__.py:1:0: C0103: Module name "Deadline_10_2_Worker" doesn't conform to snake_case naming style (invalid-name)
+************* Module OpenStudioLandscapes.Deadline_10_2_Worker._definitions_with_upstream_specs
+src/OpenStudioLandscapes/Deadline_10_2_Worker/_definitions_with_upstream_specs.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 ************* Module OpenStudioLandscapes.Deadline_10_2_Worker.assets
 src/OpenStudioLandscapes/Deadline_10_2_Worker/assets.py:105:1: W0511: Todo: (fixme)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/assets.py:131:5: W0511: Todo: (fixme)
@@ -22,17 +33,12 @@ src/OpenStudioLandscapes/Deadline_10_2_Worker/assets.py:603:0: C0116: Missing fu
 src/OpenStudioLandscapes/Deadline_10_2_Worker/assets.py:633:0: C0116: Missing function or method docstring (missing-function-docstring)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/assets.py:635:4: W0621: Redefining name 'deadline_command_compose_worker_runner' from outer scope (line 633) (redefined-outer-name)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/assets.py:663:0: C0116: Missing function or method docstring (missing-function-docstring)
-************* Module OpenStudioLandscapes.Deadline_10_2_Worker.definitions
-src/OpenStudioLandscapes/Deadline_10_2_Worker/definitions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/definitions.py:12:0: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
-************* Module OpenStudioLandscapes.Deadline_10_2_Worker.constants
-src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py:14:5: W0511: TODO: Import directly (no need for conditional) when `python_requires = >= 3.8` (fixme)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/constants.py:38:4: C0103: Constant name "fill" doesn't conform to UPPER_CASE naming style (invalid-name)
-************* Module OpenStudioLandscapes.Deadline_10_2_Worker._definitions_with_upstream_specs
-src/OpenStudioLandscapes/Deadline_10_2_Worker/_definitions_with_upstream_specs.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-************* Module OpenStudioLandscapes.Deadline_10_2_Worker
-src/OpenStudioLandscapes/Deadline_10_2_Worker/__init__.py:1:0: C0103: Module name "Deadline_10_2_Worker" doesn't conform to snake_case naming style (invalid-name)
+************* Module OpenStudioLandscapes.Deadline_10_2_Worker.doc.readme
+src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:26:0: C0301: Line too long (119/100) (line-too-long)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:35:0: C0301: Line too long (112/100) (line-too-long)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:35:4: W0106: Expression "f"deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}"" is assigned to nothing (expression-not-assigned)
 ************* Module OpenStudioLandscapes.Deadline_10_2_Worker.config.models
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:26:0: C0301: Line too long (121/100) (line-too-long)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
@@ -42,13 +48,7 @@ src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:58:8: W1203: Use 
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:61:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:5:0: C0411: third party import "pydantic.Field" should be placed before first party import "OpenStudioLandscapes.engine.config.models.FeatureBaseModel"  (wrong-import-order)
 src/OpenStudioLandscapes/Deadline_10_2_Worker/config/models.py:10:0: C0412: Imports from package OpenStudioLandscapes are not grouped (ungrouped-imports)
-************* Module OpenStudioLandscapes.Deadline_10_2_Worker.doc.readme
-src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:26:0: C0301: Line too long (119/100) (line-too-long)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:35:0: C0301: Line too long (112/100) (line-too-long)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
-src/OpenStudioLandscapes/Deadline_10_2_Worker/doc/readme.py:35:4: W0106: Expression "f"deadline-rcs-runner-10-2.{os.environ.get('OPENSTUDIOLANDSCAPES__DOMAIN_LAN', 'openstudiolandscapes.lan')}"" is assigned to nothing (expression-not-assigned)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.86/10 (previous run: 7.06/10, +0.80)
+Your code has been rated at 7.86/10 (previous run: 8.18/10, -0.32)
 
